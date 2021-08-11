@@ -1,0 +1,265 @@
+#!/bin/sh
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+SCRIPT=${0}
+SCRIPT_NAME=${0##*/}
+SCRIPT_PATH=${0%/*}
+
+MOUNT_DENUG=1
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$#
+DEFAULT_MOUNT_UID=65534
+DEFAULT_MOUNT_GID=65534
+DEFAULT_MOUNT_HOME="/mnt"
+DEFAULT_MOUNT_OPTIONS="-o uid=$DEFAULT_MOUNT_UID -o gid=$DEFAULT_MOUNT_GID"
+
+DEFAULT_LOG_FILE="/var/log/mount.log"
+
+#------------------------------------------------------------------------------#
+# close_app_using_device () {
+#     local mount_path=$1
+#     local mount_name=${mount_path##*/}
+
+#     #if tcpdump is using the device, close it.
+#     tcpdump_running="$( ps -w | grep "[t]cpdump" )"
+#     [ -z "$tcpdump_running" ] && return  
+#     tcpdump_mount_path=${tcpdump_running##*/mnt/}
+#     tcpdump_mount_name=${tcpdump_mount_path%%/*}
+#     if [ "$tcpdump_mount_name" = "$mount_name" ]; then
+#         killall tcpdump > /dev/null 2>&1
+#     fi
+# }
+
+#------------------------------------------------------------------------------#
+# set_led_on () {
+#     /usr/bin/usb_plug_led.sh &
+# }
+
+#------------------------------------------------------------------------------#
+# @func: Format device size.
+# @param: Function need paramater.
+#	size: it a device size and it's unit is Bytes.
+# @data: this function will change global variable.
+#	device-size: according to first paramater is valued.
+#==============================================================================#
+format() {
+    local size=$1
+    local units="Bytes"
+    local divisor=1
+    if [ "$size" -ge "1099511627776" ]; then
+        divisor=1099511627776   &&  units="TB"
+    elif [ "$size" -ge "1073741824" ]; then
+        divisor=1073741824      &&  units="GB"
+    elif [ "$size" -ge "1048576" ]; then
+        divisor=1048576         &&  units="MB"
+    elif [ "$size" -ge "1024" ]; then
+        divisor=1024            &&  units="KB"
+    else
+        divisor=1               &&  units="Bytes"
+    fi
+    size=$(echo "$size $divisor" | awk '{printf "%.2f \n", $1/$2}')${units}
+    echo $size
+}
+
+#------------------------------------------------------------------------------#
+# Syntax: query_uci_fstab option value
+#==============================================================================#
+query_uci_fstab () {
+	blkindex=$(uci show fstab)
+	blkindex=$(echo $blkindex | grep fstab.@mount | grep .${1}= | grep ${2})
+	blkindex=$(echo $blkindex | sed -ne 's/.*\.\@mount\[\([^]]*\).*/\1/p')
+	blkindex=$(echo $blkindex | tail -1)
+}
+
+#------------------------------------------------------------------------------#
+# usage: mount <mount device> <mount path> [<mount options>]
+#==============================================================================#
+mount_device () {
+    local mount_deivce=$1
+    local mount_path=$2
+    local mount_options=$3
+    if [ -n $mount_device -a -n $mount_path ]; then
+        
+	if [ -n $mount_options ]; then
+	    mount $mount_device $mount_options $mount_path
+	else
+	    mount $mount_device $DEFAULT_MOUNT_OPTIONS $mount_path	    
+	fi
+    fi
+}
+
+#------------------------------------------------------------------------------#
+load_fs_modules() {
+    case "$blktype" in
+        ntfs)   [ -d /sys/module/fuse ]     	|| insmod fuse
+        ;;
+        msdos|*fat*)  [ -d /sys/module/fat ]    || insmod fat
+                [ -d /sys/module/vfat ]     	|| insmod vfat
+        ;;
+        ext*)   [ -d /sys/module/mbcache ]  	|| insmod mbcache
+                [ -d /sys/module/jbd2 ]     	|| insmod jbd2
+                [ -d /sys/module/ext4 ]     	|| insmod ext4
+        ;;
+    esac
+}
+
+# @func: loger is a recoding programming action.
+# @param: this function nedd log message and log file.
+#	-- meessage: record action message.
+#	-- file: save message.
+#	--flags: this is option paramater.
+#-----------------------------------------------------------------------------#
+# usage: loger <message> <log file>
+#=============================================================================#
+loger() {
+    local datetime=$(date +"%Y/%m/%d %H:%M:%S")
+    local message=$1
+    local file=$2
+    if [ -z "$file" ]; then
+	local file=$DEFAULT_LOG_FILE
+    fi
+    echo "[${datetime}] $message" >> "$file"
+}
+
+#=============================================================================#
+add_disk() {
+    local disk_path=$1
+    local disk=${disk_path##*/}
+    local vendor="$(cat /sys/block/$disk/device/vendor | tr -s " ")"
+    local model="$(cat /sys/block/$disk/device/model | tr -s " ")"
+    local size=format "$(cat /sys/block/$disk/size | tr -s " ")"
+    if [ $DEBUG -eq 1 ]; then
+        local message="$disk attached, vendor is $vendor, product code is \
+	    $model, total size is $size."
+        loger "$message"
+    fi
+    if [ ! -d "$DEFAULT_MOUNT_HOME/$disk" ]; then
+	mkdir -p "$DEFAULT_MOUNT_HOME/$disk"
+    fi
+    echo "$disk:$disk_path:$vendor:$model:$size" > "$DEFAULT_MOUNT_HOME/$disk/$disk"
+}
+
+#=============================================================================#
+add_partition() {
+    local partition_path=$1
+    local partition=${partition_path##*/}
+    local disk=${partition%[0-9]}
+    local result=$(blkid $partition_path)
+    local uuid=$(echo $result | sed -ne 's/.* UUID="\([^"]*\).*/\1/p')
+    local format=$(echo $result | sed -ne 's/.* TYPE="\([^"]*\).*/\1/p')
+    local label=$(echo $result | sed -ne 's/.* LABEL="\([^"]*\).*/\1/p')
+    if [ $DEBUG -eq 1 ]; then
+        local message="${disk}'s $partition attached, uuid is $uuid, format is \
+	    $format, label is $label."
+        loger "$message"
+    fi
+    if [ mount_device "$partition_path" "/mnt/share" ]; then
+        if [ ! -d "$DEFAULT_MOUNT_HOME/$disk" ]; then
+	    local message="Not found $DEFAULT_MOUNT_HOME/$disk, please check this script logical."
+	    loger "$message" && exit
+        fi
+        echo "$disk:$partition:$partition_path:$uuid:$format:$label" > "$DEFAULT_MOUNT_HOME/$disk/$partition"
+    else
+	local message="mount is error, cann't mount to /mnt/share, please check mount_device fucntion."
+        loger "$message"
+    fi
+}
+
+remove_disk() {
+    local disk=$1
+    if [ $DEBUG -eq 1 ]; then
+	local message="$disk detached."
+	loger "$message"
+    fi
+    if [ -d "$DEFAULT_MOUNT_HOME/$disk" ]; then
+	rm -rf "$DEFAULT_MOUNT_HOME/$disk"
+    fi
+}
+# @illustrate usb_transaction <device> <type> <action>
+#-----------------------------------------------------------------------------#
+usb_transaction() {
+    case "$2" in
+    disk)
+        case "$3" in
+   	add)
+	    add_disk $1
+	;;
+	remove)
+            remove_disk $1
+	;;
+	*)
+	;;
+	esac
+    ;;
+    partition)
+        case "$3" in
+   	add)
+            local result=$(blkid $1)
+            local uuid=$(echo  $result | sed -ne 's/.* UUID="\([^"]*\).*/\1/p')
+            local format=$(echo  $result | sed -ne 's/.* TYPE="\([^"]*\).*/\1/p')
+            local label=$(echo $result | sed -ne 's/.* LABEL="\([^"]*\).*/\1/p')
+            
+	    if [ -n "$label" ]; then
+                message="$label($uuid, $format) was found."
+	    else
+		message="${1##*/}($uuid, $format) was found."
+	    fi
+    	    loger "${message}" "$test_file" && unset message
+
+            local mount_path="/mnt/${1##*/}"
+
+            if [ -d $mount_path ]; then
+                if [ mount | grep $mount_path ]; then
+                    umount $mount_path
+                fi
+                rm -rf "$mount_path"
+            fi
+            mkdir -p "$mount_path"
+            mount "$1" "$mount_path"
+            if [ $? ]; then
+                message="$label was mounted." 
+                loger "$message" "$test_file" && unset message
+            fi
+	;;
+	remove)
+            local result=$(mount | grep $device_path)
+            if [ -n "${result}" ]; then
+                mount_path=$(echo ${result%(*} | grep -Eo "/mnt\S*")
+                umount $mount_path
+                if [ $? ]; then
+		    rm -rf $mount_path
+                    message="$mount_path was umount."
+                    loger "$message" "$test_file" && unset message
+                fi
+            fi
+	;;
+	*)
+	;;
+	esac
+    ;;
+    *)
+    ;;
+    esac 
+}
+
+################################################################################
+
+device_name=${DEVNAME}
+device_type=${DEVTYPE}
+device_path="/dev/$device_name"
+
+message="UEVENT MESSAGE INFORMATION:
+	 DEVNAME:  $DEVNAME
+         DEVTYPE:  $DEVTYPE 
+	 DEVPATH:  $DEVPATH
+         SEQNUM:   $SEQNUM 
+	 MAJOR:    $MAJOR
+   	 MINOR:    $MINOR 
+	 ACTION:   $ACTION
+	 SUBSYSTEM $SUBSYSTEM"
+loger "$message" "$uevent_file" && unset message
+
+if [ $(echo $DEVPATH | grep "usb") ]; then
+    usb_transaction "$device_path" "$device_type" "$ACTION"
+fi
+
