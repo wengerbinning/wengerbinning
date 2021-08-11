@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/demo-memory-allocation.dir/demo-memory-allocation.c.o  -o ../demo-memory-allocation 
