@@ -1,0 +1,1 @@
+首先使用`./configure`脚本检测当前系统的配置，可以生成Makefile，之后使用make进行编译。

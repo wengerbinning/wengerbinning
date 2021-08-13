@@ -1,0 +1,1229 @@
+DFS（Dynamic Frequency Selection，动态频率调整）技术
+openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<sectiopenWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```openWRT是一个适用于嵌入式设备的Linux操作系统。用来代替静态、整体的固件；openWRT在管理包中提供一个高度可写的文件系统。
+
+每个守护进程在特定的命名空间下注册一组路径。每个路径都可以提供具有任意数量参数的多个过程。
+
+## ubus（openWRT微总线体系结构）
+
+ubus是实现守护进程与应用程序之间进程通信的通用框架。使进程间通信变得非常简单。它是由daemon，library，extra helpers组成，该项目的核心是ubus守护进程，它为其他守护进程提供一个接口来注册他们自己来发送消息，是基于unix socket实现的，使用TLV（type-length-Value）消息。该项目提供一个libubus来简化开发人员使用ubus。每一个守护进程在特定的命名空间下注册一组路经，每一个路经为多任务提供任意数量的参数。多任务也可以回复消息。
+
+## UCI
+
+UCI（Unified Configuration Interface，统一配置接口）为openWRT提供一个集中控制配置参数的管理接口。继承于NVRAM-based配置方法。所有配置信息在uci配置文件中。有许多软件支持uci模式管理。
+
+有以下命令：
+
+```shell
+# 面向LAN口提供的IP地之一服务配置。
+/etc/config/dhcp
+# SSH服务配置
+/etc/config/dropbear
+# 路由转发、端口转发、防火墙规则。
+/etc/config/firewall
+# 自身网络接口配置。
+/etc/config/network
+# 时间服务时区配置。
+/etc/config/system
+# 无线网络配置。
+/etc/config/wireless
+
+### uci配置工具
+
+所有未执行生效的修改都只存储在缓存中。
+
+* 【功能】获取配置内容。
+
+  ```shell
+  # 获取节点类型。
+  uci get <config>.<section>
+  # 获取选项的值。
+  uci get <config>.<section>.<option>
+  # 显示尚未生效的配置。
+  uci changes <config>
+  # 显示所有配置项。使用-X参数可以显示匿名节点。
+  uci show
+  # 显示指定配置。
+  uci show <config>
+  # 显示指定配置的节点。
+  uci show <config>.<section>
+  # 显示指定配置指定节点的选项。
+  uci show <config>.<section>.<option>
+  ```
+
+* 【功能】添加配置选项。
+
+   ```shell
+   # 添加一个隐藏节点。
+   uci add <config> <section type>
+   # 增加一个节点。或者修改已存在节点。
+   uci set <config>.<section>=<section type>
+   # 增加一个选项。或修改选项值。
+   uci set <config>.<section>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```on>.<option>=<value>
+   # 增加一个选项到列表中。
+   uci add_list <config>.<section>.<option>=<value>
+   ```
+
+* 【功能】删除配置信息。
+
+  ```shell
+  # 删除指定节点。
+  uci delete <config>.<section>
+  # 删除指定选项。
+  uci delete <config>.<section>.<option>
+  # 删除指定列表。
+  uci delete <config>.<section>.<list>
+  # 删除指定列表中的值。
+  uci del_list <config>.<section>.<option>=<string>
+  ```
+   
+* 【功能】生效修改。
+
+  ```shell
+  uci commit <config name>
+  '```
+
+## UCI配置文件
+
+```uci
+# config 节点
+config <section type> <section label>
+    # option 选项
+    option <key>       <value>
+    # list 列表
+    list    <list key> <list value>
+```
+
+
+DFS是一种允许未经许可的设备使用已分配给雷达系统的5GHz频段而不不影响雷达系统的技术。该技术是实现未授权的设备在正在使用的5GHz的信道上检测雷达的存在，如果检测到雷达的信号高于特定阀值，则跳出swswswsws该信道并选择一个备用信道。其目标是实现与雷达系统实现5GHz频道共存，并实现在均匀分布在sw整个频段中，在5GHz频段中有许多的信道可供无限设备使用；同时也要求随机选择信道实现均匀利用整个swswsww频段。
+
+通常而言，雷达信号是长度为1～100us的周期性窄带脉冲或者50～100us的啁啾脉冲的形式，在检测到雷达信号时，需要在10s内切换信道。
+
+信道可用性检测时间（CRC，Channnel Aailability Check Time）：在系统选择的信道并进行通信前，检测是否雷达存在雷达信道的时间。
+
+干扰检测阀值（IDT，Interference Detection Threshold）：最小信号强度，假设天线为0dB，是系统可检测到移动到另一个信道的最小信号电平。
+
+信道移动时间（CMT，Channel Move Time）：系统清除信道的时间，从检测到雷达脉冲到信道传输完毕所用的时间。
+
+信道关闭传输时间（CCT，Channel Closing Transmission Time）：在系统转移信道期间的总传输时间。
+
+非占用时间（NOT，Non-Occupancy Time）：在信道检测到雷达之后，该信道可能不被使用的一段时间。30mins
+
+主设备（Master Device）：具有雷达探测能力并可以控制网络中其他设备的设备。
+
+从设备（Slave Device）：为经注设备授权不会在信道上发起通信的设备。
+
+
+DFS过程：
+
+    主设备选择一个DFS信道，并开始进行CAC周期检测，当未检测到雷达信号（在检测到雷达信号时，将该信道添加到NOL list中并重现选择信道），则开始使用该信道并持续检测可能出现的雷达信号（称为在用监视）。如果检测到雷达信号，则主设备向其他网络内的设备发出停止传输的命令，并将该信道添加到雷达列表中，之后重现选择信道。一旦雷达列表中的某个信道的非法占用期过去，就可以清除该信道。
+
+
+    在高通技术公司芯片中有专用雷达检测模块负责雷达脉冲和传入的信标/管理或数据帧。如果硬件检测到一个Radar，则产生一个中断，MAC
+    层会提供RSSI、Pulse、Timestamp、FFT data到软件。存在一个Radar的消息序列来存储RSSI、pluse width、timestamp供中断处理。同时也存在DFS定时器来读取radar消息队列中的内容通过一个radar过滤表。
+    radar PHY 可以传输信号到固件（Offload）。
+
+    从设备的最大发送功率超过200mW必须遵循DFS，在现实中，如果客户端的最大Tx功率超过200mW，驱动程序不会自动检测到它。

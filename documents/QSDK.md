@@ -1,0 +1,1 @@
+QSDK（QCA Software Development Kit）是基于openWRT增强了对Qucalcomm Atheros芯片组支持的项目，还未曾进入OpenWrt的公共仓库中。
