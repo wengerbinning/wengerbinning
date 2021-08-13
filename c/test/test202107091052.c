@@ -4,6 +4,11 @@
 // define a new type, and this type is function pointer 
 typedef int (*typedef_obj)(int a, int b);
 
+// Define a new date type named biology. 
+typedef struct biology {
+    
+};
+
 int sum(int a, int b) {
     printf("%d\n", a+b);
     return a+b;
