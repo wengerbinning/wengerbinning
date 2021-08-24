@@ -313,7 +313,7 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
-//Source directory with the top level CMakeLists.txt file for this
+//Source directory with the top level CMakeLists.cmake file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/wbzheng/c/demo/memory
 //Install .so files without execute permission.
