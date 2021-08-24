@@ -1,0 +1,49 @@
+/* task.json is a compile configuration.
+ * This is a task configuration on VS Code about C Programming Language, and it
+ * uses gcc to compile source code. If you define youself configuration 
+ * environment, you can see <https://go.mircosoft.com/fwlink/?linkid=733558>.
+ * There have the offcial documentation about the task.json format.Others, you
+ * can see <https://code.visualstudio.com/docs/editor/tasks-appendix>. This is
+ * additional information for VS Code tasks.
+ * @author Wenger Binning
+ * @date 2021-04-08
+ */
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "gcc build",
+            "type": "shell",
+            "command": "gcc-7",
+            "args":[
+                "-o",
+                "bin/${fileBasenameNoExtension}",
+                "-g",
+                "${relativeFile}"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "debug clean task",
+            "type": "shell",
+            "command": "clear"
+        }
+    ]
+}
