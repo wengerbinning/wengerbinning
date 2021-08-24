@@ -1,14 +1,6 @@
-###############################################################################
-# <https://blog.csdn.net/afei__/article/details/81201039>
-###############################################################################
-
 cmake_minimum_required(VERSION 3.16.3)
 
-###############################################################################
-# Set project name and version.
-###############################################################################
-
-project(jianghu VERSION 0.0.0.1)
+project(test VERSION 0.0.0.1)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 
@@ -92,4 +84,4 @@ set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 # include subdirectory cmakelists.txt.
 # add_subdirectory(demo/socket/uds)
 
-add_executable(test202107091052 test/test20210709105200.c)
+add_executable(test20210822034022 test20210822034022.c)
