@@ -1,0 +1,94 @@
+\documentclass[11pt,letterpaper]{article}
+%% 
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+%% 
+\usepackage{cv_style}
+%% 导入中文支持模块。
+\usepackage[UTF8]{ctex}
+%% 导入import模块。
+\usepackage{import}
+%% 导入task模块。
+\usepackage{tasks}
+    \settasks{
+    style=itemize,
+    after-item-skip=0pt
+    }
+    
+%% 简历正文
+\begin{document}
+    \name{\kaishu 郑文彬}{black}
+    \noindent
+    \begin{minipage}[c]{\textwidth} \centering
+        \begin{tabular}{rcl}
+            \multicolumn{3}{c}{杭州，中国} \\
+            \faPhone\ {+86 178 1611 8527} & \textbullet & \faEnvelopeO\ {wengerbinning@163.com} \\
+            % \faGlobe\ {https://wengerbinning.github.io/}& \textbullet & \faGithub\ {http://github.com/wengerbinning/}
+        \end{tabular}
+    \end{minipage} \par\vspace{0.5cm}
+
+  %% 基本信息
+  \cvsection{\kaishu 基本信息}
+  \begin{tasks}(3)
+    \task {\kaishu 性别：男}
+    \task {\kaishu 籍贯：甘肃陇南}
+    \task {\kaishu 出生日期：1999-05}
+  \end{tasks}
+  \begin{tasks}(1)
+    % \task {\kaishu 应聘岗位: 嵌入式平台开发工程师}
+    \task {\kaishu 应聘岗位: C++开发工程师}
+  \end{tasks}
+ 
+  % 教育经历
+  \cvsubsection{\kaishu 教育经历}
+  \begin{enumSTriangle}[itemsep=0.1cm]
+      \item \talk{\kaishu 浙江理工大学(全日制本科)}{2017.09 2021.06} {\kaishu 电子信息工程}
+      \begin{tasks}(1)
+          %% 软件开发方向
+          \task {\kaishu 学习课程：《C语言程序设计》《程序设计基础课程设计》《C++面向对象程序设计》《嵌入式微处理器及应用》《单片机原理及应用》等。}
+          %% 嵌入式开发方向
+          % \task {\kaishu 学习课程：《单片机原理及应用》《通信原理》《嵌入式微处理器及应用》《传感器与测试技术》等。}
+          % \task {\kaishu 学业情况：专业前30\%}
+      \end{tasks}
+  \end{enumSTriangle} \twomedskip
+
+  %% 项目经验
+  \cvsection{\kaishu 项目经验}
+  \begin{enumSTriangle}[itemsep=0.1cm]
+      %% 简易电子秤的开发
+      % \import{project/}{electronic-scale.tex}
+      %% 四足机器人开发
+      % \import{project/}{quadruped-robot.tex}
+      %% 基于树莓派的人脸识别
+      \import{project/}{face-recognition.tex}
+      %% 基于树莓派的语音闹钟
+      \import{project/}{voice-alarm-clock.tex}
+      %% 四旋翼无人机开发
+    　% \import{project/}{four-rotor-UAV.tex}
+      %% 数字处理器(32位)学习
+    　% \import{project/}{digital-processor.tex}
+  \end{enumSTriangle}
+
+  %% 工作经验
+  \cvsection{\kaishu 工作经验}
+  \begin{enumSTriangle}[itemsep=0.1cm]
+      %% 浙江省物品编码中心
+    %   \import{job/}{item-coding-center.tex}
+      %% 浙江凡双科技有限责任公司
+      \import{job/}{fanshuang-technology.tex}
+      %% 九阳股份有限公司
+      % \import{job/}{joyoung.tex}
+      %% 深圳市潮流网络技术有限公司杭州分公司
+      \import{job/}{grandstream.tex}
+  \end{enumSTriangle}
+
+  %% 个人简述
+  \cvsection{\kaishu 个人简述}
+    %   {\kaishu 在大学的的学习生活，我从主修工程管理专修到电子信息工程，是因为对计算机强烈的好奇心。但是计算机是一个复杂的系统。当然由于接触的多，所以更容易了解软件开发，所以我选择了电子信息工程来了解计算机硬件方面的知识；因为软件是基于硬件的基础上的。当然，我在专业课程之余，学习了各类软件方面的知识：C/C++、Python、Golang、Java以及前端的基础知识等。因为我认为只有多了解一点才能知道适合自己的是什么。或许我可能能力上有所不足，但是希望您能给我一次学习的机会。}
+    {\kaishu 在大学四年生活中，通过专业课程与课外阅读掌握C/C++、Linux、数据结构、计算机网络等，同时也在导师项目掌握了Python，以及通过自主学习熟悉了Golang；除此之外，通过学校选修课程与自主学习掌握PS、office等技能来丰富学习生活。}
+    % {\kaishu 你好，我是一名电子信息工程专业的学生。在学习生活中}
+    % % {\kaishu 在大学四年生活中，通过专业课程与课外阅读掌握C/C++、Linux、树莓派等，同时也在导师项目掌握了Python，以及通过自主学习熟悉了Golang；除此之外，通过学校选修课程与自主学习掌握PS、office等技能来丰富学习生活。}
+%     \par \cvsubsection{\kaishu 兴趣爱好}
+%       {\kaishu 在学习之余，我通常选择在游泳馆与羽毛球馆来放松自己，当然跑步也是我提高自己身体素质的日常选择。}
+%     \par \cvsubsection{\kaishu 未来计划}
+%       {\kaishu 在未来的生活工作中，希望自己能有机会接受更多的挑战和学习新的技能。
+\end{document}

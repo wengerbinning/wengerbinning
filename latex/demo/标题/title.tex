@@ -1,0 +1,43 @@
+% 格式： \documentclass[option]{doc-class}
+% 参数：
+%       doc-class:
+%                   article:        科学期刊、演示文稿、短报告、邀请函。
+%                   proc：          基于article的会议论文集。
+%                   report：        多章节的长报告、博士论文、短篇书。
+%                   book：          书籍。
+%                   slides：        幻灯片。
+%       option：
+%                   <字体>,<纸张方向>,<纸张尺寸>,<分栏>,<双面打印>,<章节分页>,<公式对齐>,<草稿选项>
+\documentclass{ctexart}
+% 导言区
+\usepackage{listing}
+% fontspec用于选择本地安装的字体.
+\usepackage{fontspec}
+    % 使用Lucida Calligraphy字体.
+    \newfontfamily{\lucida}{Lucida Calligraphy}
+% 
+\usepackage{xeCJK}
+    % 在数学公式中支持中文.
+    \xeCJKsetup{CJKMath=true}
+    \setCJKmainfont[BoldFont=SimHei]{SimSun}
+    % 使用\songti调用SimSun字体.
+    \newCJKfontfamily[song]\songti{SimSun}
+% xcolor用于颜色的修改.
+\usepackage{xcolor}
+\title{Latex 学习演示}
+\author{Wenger Binning}
+\date{}
+\begin{{document}
+% 生成封面.
+\maketitle
+% 生成目录.
+\tableofcontents
+% 设置大纲编号.
+\setcounter{tocdepth}{2}
+\part{第一部分}
+\chapter{第一章}
+\section{第一节}
+\subsection{A节}
+\paragraph{第一段}
+    
+\end{document}}
