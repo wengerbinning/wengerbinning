@@ -1,38 +1,26 @@
 #!/usr/bin/bash
 
-test -z "${PROJECT_HOME}" && PROJECT_HOME="$(cd "../../../../" && pwd)"
+start_time=$(date +%s)
+
 test -z "${PROJECT_PATH}" && PROJECT_PATH="$(cd "../" && pwd)"
 test -z "${PROJECT_NAME}" && PROJECT_NAME="$(basename $(pwd))"
-
 test -z "${SCRIPT_PATH}" && SCRIPT_PATH="$(cd ${0%/*} && pwd)"
 test -z "${SCRIPT_NAME}" && SCRIPT_NAME="${0##*/}"
 
-CFLAGS="${CFLAGS}"
-CPPFLAGS="${CPPFLAGS}"
-LDFLAGS="${LDFLAGS}"
-LIBS="${LIBS}"
 
-# CONFIGURE_PARAM=""
-# MAKE_PARAM="V=1"
-
-TARGET_PREFIX="${PROJECT_HOME}/wenger/${PROJECT_NAME}"
-TARGET_EXEC_PREFIX="${PROJECT_HOME}/wenger/${PROJECT_NAME}/usr"
+TARGET_PREFIX="/usr"
+TARGET_EXEC_PREFIX="/usr"
+DESTDIR="./target_home"
 
 cat << EOF
 -------------------------------------------------------------------------------
-$(echo -e "\033[33;3mProject Home:\033[0m ${PROJECT_HOME}")
 $(echo -e "\033[33;3mProject Path:\033[0m ${PROJECT_PATH}")
 $(echo -e "\033[33;3mProject Name:\033[0m ${PROJECT_NAME}")
 $(echo -e "\033[33;3mScript:\033[0m ${SCRIPT_PATH}/${SCRIPT_NAME}") 
-$(echo -e "\033[33;3mMechine:\033[0m ./configure")
 -------------------------------------------------------------------------------
 EOF
 
 ./configure ${CONFIGURE_PARAM}                                                \
-        CFLAGS="${CFLAGS}"                                                    \
-        CPPFLAGS="${CPPFLAGS}"                                                \
-        LDFLAGS="${LDFLAGS}"                                                  \
-        LIBS="${LIBS}"                                                        \
         --prefix="${TARGET_PREFIX}"                                           \
         --exec-prefix="${TARGET_EXEC_PREFIX}"                                 \
         --bindir="${TARGET_EXEC_PREFIX}/bin"                                  \
@@ -64,12 +52,12 @@ $(echo -e "\033[33;3mMake is successful! Start install files to target directory
 -------------------------------------------------------------------------------
 EOF
 
-# make install
+make install DESTDIR=${DESTDIR}
 
-# if [ $? -ne 0 ]; then echo -e "\033[31m\nInstall is fail!\033[0m"; exit 2; fi
+if [ $? -ne 0 ]; then echo -e "\033[31m\nInstall is fail!\033[0m"; exit 2; fi
 
-# cat << EOF
-# -------------------------------------------------------------------------------
-# $(echo -e "\033[33;3mInstall is successful!\033[0m")
-# -------------------------------------------------------------------------------
-# EOF
+cat << EOF
+-------------------------------------------------------------------------------
+$(echo -e "\033[33;3mInstall is successful! target is \'\033[032m${DESTDIR}\033[33;3m\'\033[0m")
+-------------------------------------------------------------------------------
+EOF

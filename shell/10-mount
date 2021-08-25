@@ -250,9 +250,9 @@ device_path="/dev/$device_name"
 
 message="UEVENT MESSAGE INFORMATION:
 	 DEVNAME:  $DEVNAME
-         DEVTYPE:  $DEVTYPE 
+     DEVTYPE:  $DEVTYPE 
 	 DEVPATH:  $DEVPATH
-         SEQNUM:   $SEQNUM 
+     SEQNUM:   $SEQNUM 
 	 MAJOR:    $MAJOR
    	 MINOR:    $MINOR 
 	 ACTION:   $ACTION

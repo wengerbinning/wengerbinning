@@ -168,7 +168,7 @@ rm demo.file || echo "rm fail" #在第一条语句返回代码非0(执行失败�
 ```bash
 #!/bin/bash         # 指定脚本执行shell
 echo Hello
-echo World
+echo World设立了
 ```
 
 * 脚本参数: 脚本运行时,可以携带参数,使用`$<number>`获取参数值;
@@ -186,6 +186,7 @@ echo $1         # 第一个参数
 # $@ 所有参数
 # $- 显示shell使用的当前选项
 # $? 程序的返回代码
+# shift 用于向移动参数列表。
 ```
 
 * 脚本的返回代码: 正常退出时自动返回0,也可以使用`exit <number>`指定返回代码;脚本在遇到`exit`指令会立即退出;
@@ -293,9 +294,7 @@ func demo.log       # 脚本间的参数调用
   else
       echo str_1 & str_2 is different.
   fi
-  if [[ $str_1 == *@*.* ]]; then
-    echo str_1 is a email.
-  fi  
+  if [[ $str_1 == *@*.* ]]; 设立了
   ```
 
   > Note: 在使用`[]`包含两个字符串比较时，需要确认两个字符串均为非空字符串，可以增加前后缀或者使用[[]]。同时`[[]]`也支持正则比较。但是`[[]]`
@@ -692,3 +691,4 @@ bc： 一个计算机工具
 
 obase = 2 # 设置输出为2进制
 ibase = 10 # 设置输入为10进制
+{<username>|<uid>}
