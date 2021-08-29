@@ -85,3 +85,4 @@ set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 # add_subdirectory(demo/socket/uds)
 
 add_executable(test20210822034022 test20210822034022.c)
+add_executable(test20210825143726 test20210825143726.c)

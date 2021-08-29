@@ -1,3 +1,0 @@
-/home/wengerbinning/repos/wengerbinning/c/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/wengerbinning/repos/wengerbinning/c/test/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/wengerbinning/repos/wengerbinning/c/test/cmake-build-debug/CMakeFiles/test20210822034022.dir
