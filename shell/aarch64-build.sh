@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+start_time=$(date +%s)
+
 test -z "${PROJECT_HOME}" && PROJECT_HOME="$(cd "../../../../" && pwd)"
 test -z "${PROJECT_PATH}" && PROJECT_PATH="$(cd "../" && pwd)"
 test -z "${PROJECT_NAME}" && PROJECT_NAME="$(basename $(pwd))"
@@ -15,7 +17,7 @@ HOST="aarch64-openwrt-linux-musl"
 CFLAGS="${CFLAGS}"
 CPPFLAGS="-I${STAGING_DIR}/include -I${STAGING_DIR}/usr/include ${CFLAGS}"
 LDFLAGS="-L${STAGING_DIR}/lib -L${STAGING_DIR}/usr/lib ${LDFLAGS}"
-LIBS="${LIBS}"
+LIBS="${LIBS}"samba
 
 # CONFIGURE_PARAM=""
 # MAKE_PARAM="V=1"
@@ -23,6 +25,7 @@ LIBS="${LIBS}"
 TARGET_PREFIX=""
 TARGET_EXEC_PREFIX="/usr"
 DESTDIR="${PROJECT_HOME}/wenger/${PROJECT_NAME}"
+
 cat << EOF
 -------------------------------------------------------------------------------
 $(echo -e "\033[33;3mProject Home:\033[0m ${PROJECT_HOME}")
