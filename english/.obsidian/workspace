@@ -7,11 +7,8 @@
         "id": "486359ccba15b88c",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "[00]英语音标.md",
-            "mode": "source"
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "[00]英语音标.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,13 +84,15 @@
   },
   "active": "486359ccba15b88c",
   "lastOpenFiles": [
-    "[00]英语音标.md",
-    "grammer/基本句型.md",
-    "grammer/unit10.md",
-    "grammer/unit5&6&7.md",
-    "[03]英语语法.md",
-    "[02]英语词汇.md",
-    "[01]英语音节.md",
-    "grammer/unit9.md"
+    "grammer/essential_grammar_in_use/unit10.md",
+    "past_simple.md",
+    "grammer/essential_grammar_in_use/unit7.md",
+    "grammer/essential_grammar_in_use/unit5.md",
+    "grammer/essential_grammar_in_use/unit6.md",
+    "grammer/essential_grammar_in_use/unit5&6&7.md",
+    "grammer/essential_grammar_in_use/Untitled.md",
+    "grammer/essential_grammar_in_use/unit18.md",
+    "grammer/essential_grammar_in_use/unit17.md",
+    "grammer/essential_grammar_in_use/unit16.md"
   ]
 }

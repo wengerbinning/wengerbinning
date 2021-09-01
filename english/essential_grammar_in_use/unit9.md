@@ -1,4 +1,4 @@
-# `have & have got` have a same mean
+# have & have got have a same mean
 
 
 | one | two | 
