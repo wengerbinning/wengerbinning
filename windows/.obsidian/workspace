@@ -1,0 +1,93 @@
+{
+  "main": {
+    "id": "ad7b48b1156bd728",
+    "type": "split",
+    "children": [
+      {
+        "id": "df9a765928158464",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "技术/active_directory.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "635921a9ca6247da",
+    "type": "split",
+    "children": [
+      {
+        "id": "ec699a5f91e0d761",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6812f1141e39f17a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "b07beaaa27088617",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b6545b8a11101076",
+    "type": "split",
+    "children": [
+      {
+        "id": "505e2e9f6cc5b326",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b9775efad03bd0cd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "技术/active_directory.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "df9a765928158464",
+  "lastOpenFiles": [
+    "Untitled.md"
+  ]
+}
