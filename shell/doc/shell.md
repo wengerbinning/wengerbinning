@@ -308,8 +308,8 @@ func demo.log       # 脚本间的参数调用
    test -f demo; echo $?
    # 目录文件是否存在 
    test -d demo; echo $?
-   # 脚本编程软连接文件是否存在
-   test -L demo; echo $?
+    # 脚本编程软连接文件是否存在
+    test -L demo; echo $?
    # 文件是否可读
    test -r demo; echo $?
    # 文件是否可写
