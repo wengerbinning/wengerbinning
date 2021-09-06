@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "services/apple_file_service.md",
+            "file": "network_protocol/802.11.md",
             "mode": "source"
           }
         }
@@ -52,7 +52,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "0aeae172a056c65c",
@@ -68,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "services/apple_file_service.md",
+                "file": "network_protocol/802.11.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +89,15 @@
   },
   "active": "d8e2ce0a2dc7d498",
   "lastOpenFiles": [
+    "network_protocol/Untitled.md",
+    "Untitled.md",
+    "README.md",
     "services/apple_file_service.md",
     "file_system/apple_file_system.md",
     "network_protocol/AFP.md",
     "file_system/common_internet_file_system.md",
     "file_system/network_file_system.md",
     "file_system/Untitled.md",
-    "file_system/SMB.md",
-    "file_system/APFS.md",
-    "services/Untitled.md",
-    "FS/AFS.md"
+    "file_system/SMB.md"
   ]
 }
