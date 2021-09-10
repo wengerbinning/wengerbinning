@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "d8e2ce0a2dc7d498",
+        "id": "a9d0ed03853a5656",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "network_protocol/802.11.md",
+            "file": "common_gateway_interface.md",
             "mode": "source"
           }
         }
@@ -52,8 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "0aeae172a056c65c",
@@ -69,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "network_protocol/802.11.md",
+                "file": "common_gateway_interface.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -87,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d8e2ce0a2dc7d498",
+  "active": "a9d0ed03853a5656",
   "lastOpenFiles": [
-    "network_protocol/Untitled.md",
+    "common_gateway_interface.md",
+    "Untitled 1.md",
+    "servers/web_server.md",
+    "servers/application server.md",
     "Untitled.md",
+    "services/web_server.md",
+    "application.md",
+    "services/Untitled.md",
     "README.md",
-    "services/apple_file_service.md",
-    "file_system/apple_file_system.md",
-    "network_protocol/AFP.md",
-    "file_system/common_internet_file_system.md",
-    "file_system/network_file_system.md",
-    "file_system/Untitled.md",
-    "file_system/SMB.md"
+    "network.md"
   ]
 }

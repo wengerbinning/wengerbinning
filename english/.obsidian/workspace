@@ -4,11 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "486359ccba15b88c",
+        "id": "562f42b569ac3c75",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "soundmark.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "soundmark.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -82,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "486359ccba15b88c",
+  "active": "562f42b569ac3c75",
   "lastOpenFiles": [
-    "grammer/essential_grammar_in_use/unit10.md",
+    "soundmark.md",
+    "音标.md",
+    "README.md",
     "past_simple.md",
+    "essential_grammar_in_use/unit12.md",
+    "essential_grammar_in_use/unit11.md",
+    "essential_grammar_in_use/unit10.md",
+    "grammer/essential_grammar_in_use/unit10.md",
     "grammer/essential_grammar_in_use/unit7.md",
-    "grammer/essential_grammar_in_use/unit5.md",
-    "grammer/essential_grammar_in_use/unit6.md",
-    "grammer/essential_grammar_in_use/unit5&6&7.md",
-    "grammer/essential_grammar_in_use/Untitled.md",
-    "grammer/essential_grammar_in_use/unit18.md",
-    "grammer/essential_grammar_in_use/unit17.md",
-    "grammer/essential_grammar_in_use/unit16.md"
+    "grammer/essential_grammar_in_use/unit5.md"
   ]
 }

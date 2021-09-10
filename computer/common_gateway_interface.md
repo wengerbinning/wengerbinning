@@ -1,0 +1,3 @@
+通用网关接口（CGI）是Web服务器与运行的应用程序进行交流的一种约定。也是一种Web服务器与进程通信的协议。
+
+CGI将request的header设置为进程的环境变量，body设置为进程的标准输入，进程的标准输出设置为response，包含header与body.并将实现CGI协议的程序称为CGI程序。

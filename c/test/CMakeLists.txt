@@ -57,7 +57,7 @@ set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 ###############################################################################
 #=============================== Project Build ===============================#
 
-# file(GLOB SRC "src/*.c")
+# file(GLOB SRC "code/*.c")
 
 #+++++++++++++++++++ Library
 

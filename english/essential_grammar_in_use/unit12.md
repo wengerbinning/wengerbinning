@@ -4,7 +4,7 @@
 |:---:|:---:|
 | do/does | did |
 
-| positive | positive | qiestion |
+| positive | negative | qiestion |
 |:--- |:--- |:--- |
 | I played | I did not play | Did I play? |
 | We started | We did not start | Did we start? |
