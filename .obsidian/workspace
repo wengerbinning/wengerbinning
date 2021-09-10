@@ -1,15 +1,15 @@
 {
   "main": {
-    "id": "b84e7bc7e5652cdc",
+    "id": "84974058fc2dc748",
     "type": "split",
     "children": [
       {
-        "id": "4d7f9c736265d8d3",
+        "id": "d52d5351516a9682",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "rfc1918.md",
+            "file": "computer/README.md",
             "mode": "source"
           }
         }
@@ -18,15 +18,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "b9981b65881b5470",
+    "id": "9a2736e1814189c4",
     "type": "split",
     "children": [
       {
-        "id": "abe5ca61118023d1",
+        "id": "d5808c3aab3703ba",
         "type": "tabs",
         "children": [
           {
-            "id": "9df8bb4b467a777f",
+            "id": "1bf98f44b2c982a7",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -34,7 +34,7 @@
             }
           },
           {
-            "id": "3664ab3690428cc5",
+            "id": "a1f6bef9666faa00",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -55,20 +55,20 @@
     "width": 300
   },
   "right": {
-    "id": "66bcf9873c17a5f4",
+    "id": "7d259fddcb918ad4",
     "type": "split",
     "children": [
       {
-        "id": "99663eb9fc3d5c9c",
+        "id": "7b7107b691bcc376",
         "type": "tabs",
         "children": [
           {
-            "id": "3ba2e276f0f92f8a",
+            "id": "93cab7ce34c8dbda",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rfc1918.md",
+                "file": "computer/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,8 +86,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "4d7f9c736265d8d3",
+  "active": "d52d5351516a9682",
   "lastOpenFiles": [
-    "Untitled.md"
+    "computer/README.md",
+    "computer/programing-language.md",
+    "README.md"
   ]
 }

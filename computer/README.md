@@ -1,10 +1,71 @@
 # 计算机系统
 
-计算机系统是由硬件子系统与软件子系统组成。其中软件子系统中的操作系统对硬件底层进行了抽象和封装，为应用软件提供了统一的接口；而硬件子系统是由CPU、内存、I/O设备以及总线组成。
+计算机系统是由硬件子系统与软件子系统组成。其中软件子系统中的操作系统是对硬件底层进行了抽象和封装，为应用软件提供了统一的接口；而硬件子系统是由CPU、内存、I/O设备以及总线组成。
 
-## 资源链接
+---
 
-## 目录结构
+## 硬件系统
+
+### CPU
+### Memory
+### External Storage
+### Mainboard
+### Power
+### Displayer
+### Keyboard
+###  Loudspeaker
+### Network Card
+### Graphics Card
+### Sound Card
+### Heat Sink
+
+---
+
+## 系统固件
+
+### BIOS
+基本输入输出系统（BIOS, Bsic Input Output System）是在IBM PC兼容计算机上的引导过程的固件，是开机的第一个软件。用于加载操作系统。
+
+#### legacy BIOS
+
+legacy BIOS是传统的BIOS，与MBR分区共同使用 
+
+#### UEFI BIOS
+
+ Unified Extensible Firmware Interface是一种现代BIOS,与GPT格式分区共同使用。
+
+
+### Boot Loader
+
+Boot Loader是用于加载应用程序的固件。
+
+#### U-BOOT
+
+Universal Boot Loader是一个用于嵌入式系统的引导加载程序
+
+#### GRUB
+
+GrandUnified Boot Loader是引导内核加载程序，多用于Linux加载。
+
+---
+
+## 操作系统
+
+### GNU/Linux
+
+### Windows
+
+### MacOS
+
+### Harmony
+
+### Android
+
+### iOS
+
+---
+
+## 应用软件
 
 ### 计算机组成原理
 
@@ -26,7 +87,6 @@
 
   * OS（Operating System）：由启动管理器或者主引导记录直接进入操作系统。
 
-### 计算机操作系统
 
 ### 计算机网络通信
 
@@ -60,3 +120,8 @@ $$
 * 隐秘型
 * 定时炸弹型
 * 重旁炸弹型
+
+---
+
+## 资源链接
+
