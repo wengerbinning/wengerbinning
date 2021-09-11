@@ -42,9 +42,18 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 
 #================== Project Framework ========================================#
 
+# add -I
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-link_directories(${PROJECT_SOURCE_DIR}/lib)
+# add -L
+LINK_DIRECTORIES(
+        "/usr/local/lib"
+)
+
+# add -l
+LINK_LIBRARIES(
+        "ubox"
+)
 
 # set(CMAKE_STAGING_PREFIX ${PROJECT_SOURCE_DIR}/bin)
 
@@ -52,6 +61,7 @@ link_directories(${PROJECT_SOURCE_DIR}/lib)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # Set library file output path.
 set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+
 
 
 ###############################################################################
@@ -84,5 +94,8 @@ set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 # include subdirectory cmakelists.txt.
 # add_subdirectory(demo/socket/uds)
 
-add_executable(test20210822034022 test20210822034022.c)
-add_executable(test20210825143726 test20210825143726.c)
+#add_executable(test20210822034022 test20210822034022.c)
+
+#add_executable(test20210825143726 test20210825143726.c)
+ADD_EXECUTABLE(test20210910114430 test20210910114430.c)
+#ADD_EXECUTABLE(test20210910145806 test20210910145806.c)

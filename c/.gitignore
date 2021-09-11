@@ -3,6 +3,7 @@
 
 **/build/**
 **/cmake-build-debug/**
+**/destdir/**
 
 **/*.log
 **/*.o
