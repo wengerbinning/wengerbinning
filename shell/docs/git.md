@@ -1,5 +1,3 @@
-# Git
-
 git是一个免费开源DVCS（Distributed Version Control System，分布式版本控制系统），是为了快速高效地处理所有项目的版本变迁，
 具有易学、体积小等特点。git支持快速管理多个完全独立的本地分支，当推送到远程存储仓库时，你可以指定推送的分支，在git工作中，
 有Working Directory、Staging Area、Repository三个区，其中Staging Area是可以在提交之前对提交格式化和检查；git项目属于

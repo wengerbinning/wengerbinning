@@ -1,32 +1,29 @@
 {
   "main": {
-    "id": "c87c4e8ea14b372f",
+    "id": "03189d1a94dae12a",
     "type": "split",
     "children": [
       {
-        "id": "a97ef10f8322b915",
+        "id": "daf8f934583ffe0c",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "编程规范.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "297be46151bb2714",
+    "id": "4ec2192db1f88d6b",
     "type": "split",
     "children": [
       {
-        "id": "3bf203e8de51c39f",
+        "id": "5375b8db96337d15",
         "type": "tabs",
         "children": [
           {
-            "id": "6b9037475d05c1f4",
+            "id": "3b0e7b45d0906d00",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -34,7 +31,7 @@
             }
           },
           {
-            "id": "5d91e28fc9742b20",
+            "id": "83c4287f278d5a0f",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -52,24 +49,22 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "78cbc551db04cb62",
+    "id": "a2c04751cd485145",
     "type": "split",
     "children": [
       {
-        "id": "5dda83ec068daa7d",
+        "id": "07692da1efd29325",
         "type": "tabs",
         "children": [
           {
-            "id": "fd4c2fee496a394a",
+            "id": "d5390e21d31211d6",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "编程规范.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -87,17 +82,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "a97ef10f8322b915",
+  "active": "daf8f934583ffe0c",
   "lastOpenFiles": [
-    "编程规范.md",
-    "ubus.md",
-    "任务处理.md",
-    "Untitled.md",
-    "libubox.md",
-    "编译指令.md",
-    "标准模块.md",
-    "数据结构.md",
-    "软件测试.md",
-    "软件工程.md"
+    "Untitled 1.md",
+    "fonts.md",
+    "EDA.md",
+    "CSS.md",
+    "CPP软件开发工程师.md",
+    "config.md",
+    "complie.md",
+    "Cadence.md",
+    "C Programming Language.md",
+    "annotation.md"
   ]
 }

@@ -9,7 +9,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "内核分析/进程结构.md",
+=======
+            "file": "设备管理.md",
+>>>>>>> alpha
             "mode": "source"
           }
         }
@@ -68,7 +72,11 @@
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
                 "file": "内核分析/进程结构.md",
+=======
+                "file": "设备管理.md",
+>>>>>>> alpha
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,12 +96,19 @@
   },
   "active": "17d0c3b09e637b59",
   "lastOpenFiles": [
+<<<<<<< HEAD
+=======
+    "Untitled 1.md",
+>>>>>>> alpha
     "内核分析/进程结构.md",
     "内核分析/辅助内存.md",
     "内核分析/内存映射.md",
     "内核分析/README.md",
     "内核分析/Untitled.md",
+<<<<<<< HEAD
     "Untitled 1.md",
+=======
+>>>>>>> alpha
     "README.md",
     "Untitled.md",
     "内存问题.md"

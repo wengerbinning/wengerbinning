@@ -1,0 +1,17 @@
+# 
+**/*.log
+**/*.o
+**/*.exe
+**/*.a
+**/*.lib
+**/*.so
+**/*.dll
+
+#
+commit.message
+
+#
+**/cache/**
+**/build/**
+
+#

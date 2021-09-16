@@ -7,8 +7,16 @@
         "id": "8a4a9ecbb52922f7",
         "type": "leaf",
         "state": {
+<<<<<<< HEAD
           "type": "empty",
           "state": {}
+=======
+          "type": "markdown",
+          "state": {
+            "file": "character_encoding.md",
+            "mode": "source"
+          }
+>>>>>>> alpha
         }
       }
     ],
@@ -65,6 +73,10 @@
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
+=======
+                "file": "character_encoding.md",
+>>>>>>> alpha
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,5 +95,20 @@
     "collapsed": true
   },
   "active": "8a4a9ecbb52922f7",
+<<<<<<< HEAD
   "lastOpenFiles": []
+=======
+  "lastOpenFiles": [
+    "character_encoding.md",
+    "operating_system.md",
+    "network_adapter.md",
+    "memory_structure.md",
+    "memory.md",
+    "information.md",
+    "hardware_structure.md",
+    "GNU.md",
+    "displayer.md",
+    "design-pattern.md"
+  ]
+>>>>>>> alpha
 }
