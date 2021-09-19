@@ -1,19 +1,15 @@
 {
   "main": {
-    "id": "b4d0b75e76c2116d",
+    "id": "062281c7d2335303",
     "type": "split",
     "children": [
       {
-        "id": "17d0c3b09e637b59",
+        "id": "db675f18d1ba6aa5",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
-            "file": "内核分析/进程结构.md",
-=======
-            "file": "设备管理.md",
->>>>>>> alpha
+            "file": "系统管理.md",
             "mode": "source"
           }
         }
@@ -22,15 +18,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "6cd69aca29d2610c",
+    "id": "73de79af740cb611",
     "type": "split",
     "children": [
       {
-        "id": "ba9451cd0495f834",
+        "id": "501372552f2332fc",
         "type": "tabs",
         "children": [
           {
-            "id": "24f58abc4bc5fd99",
+            "id": "702e99043fa0db6f",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -38,7 +34,7 @@
             }
           },
           {
-            "id": "4561489617c9e6ff",
+            "id": "691545e00b901370",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -56,33 +52,30 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
-    "id": "e410f414e435a7e4",
+    "id": "56dec3dc165f1cf3",
     "type": "split",
     "children": [
       {
-        "id": "c86b78964b614664",
+        "id": "9d638fd84d18e99e",
         "type": "tabs",
         "children": [
           {
-            "id": "f21f318ebf7a57e0",
+            "id": "0dbfbfff9f19a3fc",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
-                "file": "内核分析/进程结构.md",
-=======
-                "file": "设备管理.md",
->>>>>>> alpha
+                "file": "系统管理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": false,
+                "backlinkCollapsed": true,
                 "unlinkedCollapsed": true
               }
             }
@@ -94,23 +87,16 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "17d0c3b09e637b59",
+  "active": "db675f18d1ba6aa5",
   "lastOpenFiles": [
-<<<<<<< HEAD
-=======
-    "Untitled 1.md",
->>>>>>> alpha
-    "内核分析/进程结构.md",
-    "内核分析/辅助内存.md",
-    "内核分析/内存映射.md",
-    "内核分析/README.md",
-    "内核分析/Untitled.md",
-<<<<<<< HEAD
-    "Untitled 1.md",
-=======
->>>>>>> alpha
-    "README.md",
-    "Untitled.md",
-    "内存问题.md"
+    "系统管理.md",
+    "内核架构.md",
+    "openwrt/ubus.md",
+    "openwrt/ubox.md",
+    "openwrt/libubox.md",
+    "openwrt/uhttp.md",
+    "openwrt/rpcd.md",
+    "openwrt/Untitled.md",
+    "Untitled 1.md"
   ]
 }

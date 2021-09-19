@@ -1,31 +1,10 @@
-<<INFO
--------------------------------------------------------------------------------
-	Install  Script
-This is a shell script about install some software, if you are instrested in 
-this project. You can write email to for me and tell me you idea.
--------------------------------------------------------------------------------
-@auther: Wenger Binning
-@email: wengerbinning@gmail.com
-@date: [2021-04-22 21:17, ]
-@version: 0.0.1
-------------------------------------------------------------------------------- 
-INFO
+#!/usr/bin/env bash
 
-#!/bin/bash
+test -z "$SCRIPT_PATH" && SCRIPT_PATH=$1
+test -z "$SCRIPT_HOME" && SCRIPT_HOME=${SCRIPT_PATH%/*}
+test -z "$SCRIPT_NAME" && SCRIPT_NAME=${SCRIPT_PATH##*/}
 
-help() {
-
-  message=demo
-
-<<comment
-This is a demo.
-	demo
-demo
-comment
-  echo $SHELL
-
-  echo $message
-}
-help
-
+tail -n +10 $0 > rootfs.tar.gz
+tar xzvf rootfs.tar.gz -C ./roofs/
+cd ./roofs/ && echo success && ls ./
 
