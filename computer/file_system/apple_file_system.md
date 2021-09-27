@@ -5,7 +5,7 @@
 
 ## PROTOCOL
 
-* ~~[[apple_filing_protocol|AFP]]已经被弃用~~
+* ~~[[AFP|AFP]]已经被弃用~~
 ## PRODUCTS
 
 * The [Netatalk](http://netatalk.sourceforge.net/)  is a freely-available Open Source AFP fileserver.
