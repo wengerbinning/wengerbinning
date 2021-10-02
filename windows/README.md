@@ -129,3 +129,7 @@ nero
 * 文件:`C:/hiberfil.sys`
 
 * 关闭系统休眠: `powercfg -h off`
+
+
+
+RYCR6-T7Y6M-2TVHK C2YW3-7TYQ8

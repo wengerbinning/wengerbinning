@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "系统管理.md",
+            "file": "网络管理.md",
             "mode": "source"
           }
         }
@@ -52,8 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "56dec3dc165f1cf3",
@@ -69,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "系统管理.md",
+                "file": "网络管理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +88,7 @@
   },
   "active": "db675f18d1ba6aa5",
   "lastOpenFiles": [
+    "网络管理.md",
     "系统管理.md",
     "内核架构.md",
     "openwrt/ubus.md",
