@@ -17,3 +17,4 @@
 **/.obsidian/**
 **/.idea/**
 **/.vscode/**
+**/cmake-build-debug/**
