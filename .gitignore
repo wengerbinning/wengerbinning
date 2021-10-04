@@ -15,3 +15,5 @@
 **/build/**
 **/imagedir/**
 **/.obsidian/**
+**/.idea/**
+**/.vscode/**
