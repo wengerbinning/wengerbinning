@@ -1,4 +1,4 @@
-# 
+# Some generic matching files that do not need be tracked.
 **/*.log
 **/*.o
 **/*.exe
@@ -7,11 +7,11 @@
 **/*.so
 **/*.dll
 
-#
-commit.message
+# Some project files that do not need to be tracked.
+.commit.message
 
-#
+# Some generic matching directorys that do not need be tracked.
 **/cache/**
 **/build/**
-
-#
+**/imagedir/**
+**/.obsidian/**

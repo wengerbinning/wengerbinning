@@ -6,11 +6,10 @@
       {
         "id": "5553f476ea305ec9",
         "type": "leaf",
-        "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "network_protocol/AFP.md",
+            "file": "database/README.md",
             "mode": "source"
           }
         }
@@ -69,10 +68,12 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "network_protocol/AFP.md",
+                "file": "database/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -85,16 +86,17 @@
     "width": 300,
     "collapsed": true
   },
+  "active": "5553f476ea305ec9",
   "lastOpenFiles": [
+    "database/README.md",
+    "database/Untitled.md",
+    "network_protocol/AFP.md",
     "network_protocol/apple_filing_protocol.md",
     "network.md",
     "operating_system.md",
     "README.md",
     "BIOS.md",
     "application.md",
-    "network_protocol/802.11.md",
-    "network_protocol/aaa.md",
-    "network_protocol/README.md",
-    "servers/application server.md"
+    "network_protocol/802.11.md"
   ]
 }

@@ -9,6 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
+            "file": "git.md",
+            "mode": "source"
           }
         }
       }
@@ -67,7 +69,6 @@
               "type": "backlink",
               "state": {
                 "file": "git.md",
-                "file": "apache.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -96,7 +97,6 @@
     "make.md",
     "dd.md",
     "docker.md",
-    "README.md",
-    "tunctl.md"
+    "README.md"
   ]
 }
