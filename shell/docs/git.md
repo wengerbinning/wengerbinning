@@ -1,16 +1,8 @@
-git是一个免费开源DVCS（Distributed Version Control System，分布式版本控制系统），是为了快速高效地处理所有项目的版本变迁，
-具有易学、体积小等特点。git支持快速管理多个完全独立的本地分支，当推送到远程存储仓库时，你可以指定推送的分支，在git工作中，
-有Working Directory、Staging Area、Repository三个区，其中Staging Area是可以在提交之前对提交格式化和检查；git项目属于
-Software Freedom Conservancy。
-
-## 资源链接
-
-* [官方网站](https://git-scm.com/) ☛ <https://git-scm.com/>
+git是一个免费开源DVCS（Distributed Version Control System，分布式版本控制系统），是为了快速高效地处理所有项目的版本变迁，具有易学、体积小等特点。git支持快速管理多个完全独立的本地分支，当推送到远程存储仓库时，你可以指定推送的分支，在git工作中，有Working Directory、Staging Area、Repository三个区，其中Staging Area是可以在提交之前对提交格式化和检查；git项目属于Software Freedom Conservancy。
 
 ## 环境配置
 
-在使用git之前，需要配置用户信息，全局配置文件`~/.gitconfig`，仓库配置文件`<repository>/.git/config`。git提供`git config`来
-配置信息;当然如果熟悉配置文件，则可以直接修改配置文件。
+在使用git之前，需要配置用户信息，全局配置文件`~/.gitconfig`，仓库配置文件`<repository>/.git/config`。git提供`git config`来配置信息;当然如果熟悉配置文件，则可以直接修改配置文件。
 
 * 【功能】指定全局默认用户名：
 
@@ -57,7 +49,7 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   # 初始化当前工作目录为一个新的仓库。默认会在该目录下新建一个.git/来存储生成的仓库信息文件。
   git init
   # 指定一个工作目录初始化为新的仓库。
-  git init <directory>r 
+  git init <directory>
   # 初始化当前工作目录为一个新的裸库。即直接在当前工作目录下生成仓库信息文件。
   git init --base
   ```
@@ -342,3 +334,6 @@ git在使用ssh连接clone的仓库时。在服务器端配置好public key之�
 host <service host>
     IdentityFile ~/.ssh/key/<private file>
 ```
+
+## LINKS
+* [官方网站](https://git-scm.com/) ☛ <https://git-scm.com/>
