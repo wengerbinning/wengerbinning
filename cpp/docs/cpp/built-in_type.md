@@ -1,45 +1,37 @@
-基础数据类型是编程语言支持的基本数据类型主要有数值类型、字符序列、布尔类型以及空白类型等。
+内置类型是编程语言支持的基本数据类型，在C++中有算数类型(arithmetic type)与空类型(void)。 算数类型
+主要整数类型与浮点数类型。
 
 ---
 
-## 数值类型
+## 整数
 
-数值类型主要包含整数类型、浮点类型。主要用于计算机中数值的计算。
+整数类型有bool、char、wchar_t、chart16_t、char32_t、short、int、long、long long，其中char、wchar_t、chart16_t、char32_t
+即属于整数类型也属于字符类型，其中char是标准字符类型；其他类型均为扩展字符集，wchar_t用于确保可以存放机器最大扩展字符集中任意一个字符，
+char16_t与char32_t是unicode字符子集服务的。
 
-| 类型 | 说明 | 类型 | 说明 |
-|:---:|:--- |:---:|:--- |
-| short | 有符号短整型 | unsigned short | 无符号短整型 |
-| int | 有符号整型 | unsigned int | 无符号整型 |
-| long | 有符号长整型 | unsigned long | 无符号长整型 |
-| float | 单精度浮点类型 | double | 双精度浮点类型 |
-| long double | 扩展浮点数 |
+* `bool`：布尔类型，bool类型属于逻辑值，仅有真假两种状态，在C++中，任何非零整数表示真，零表示假。
+* `char`：字符类型，占据1B的内存空间，能存储一个字节标识的ASCII编码、ISO-8859编码的所有字符，或者UTF-8编码与Shift-JIS中的单个字符。
+* `wchar_t`：宽字符类型，在Windows中编译器中占据2B的内存空间，可以存储UTF-16LE编码所有的字符。
+* `char16_t`：unicode字符类型，占据2B的内存空间，可以存储UTF-16编码的字符。
+* `char32_t`：unicode字符类型，占据4B的内存空间，可以存储UTF-32编码的字符。
+* `short`：short占半个Word。
+* `int`：int占一个Word。
+* `long`：long占两个Word。
+* `long long`：
 
-* `short` or `unsigned short`：short占半个Word。
-* `int` or `unsigned int`：int占一个Word。
-* `long` or `unsigned long`：long占两个Word。
+---
+
+## 浮点数
+
+浮点数
+
+
 * `float` or `double`：float一般占1个Word，保证6位有效数字；double占两个Word，保证10位有效数字；long double占三个或四个Word。
 * 当赋值超过类型允许的范围的对象后，编译器会将该值对类型取值范围进去取模运算后的值，例如将336赋值到`unsigned char`类型的对象，编译器会对336进行256的取模得到80，然后将80赋值给对象。在C++中将负数赋值为无符号的对象是合法的，但也会进行取模后进行赋值。
 
+---
 
-## 字符类型
 
-C++除了支持C语言的char类型外，还扩展了string类型的字符串。
-
-| 类型 | 说明 |
-|:---:|:--- |
-| char | 1个字节的字符 |
-| wchar_t | 2个字节的宽字符 |
-| char16_t | 2字节的多字节字符 |
-| char32_t | 4字节的多字节字符 |
-| string | 窄字节的字符串类型 |
-| wstring | 宽字节的字符串类型 |
-
-* `char`：占据1B的内存空间，能存储一个字节标识的ASCII编码、ISO-8859编码的所有字符，或者UTF-8编码与Shift-JIS中的单个字符。 
-* `wchar_t`：在Windows中编译器中占据2B的内存空间，可以存储UTF-16LE编码所有的字符。
-* `char16_t`：占据2B的内存空间，可以存储UTF-16编码的字符。
-* `char32_t`：占据4B的内存空间，可以存储UTF-32编码的字符。
-* `string`：是C++扩展的字符串类型，需要包含头文件string后才能使用，字符串结尾包含一个结束字符`\0`。
-* `wstring`：是C++扩展的字符串类型，
 
 #### 转义字符
 

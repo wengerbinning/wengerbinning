@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "git.md",
+            "file": "gnupg.md",
             "mode": "source"
           }
         }
@@ -52,8 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "c9f4f6c792b95842",
@@ -69,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "git.md",
+                "file": "gnupg.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,15 +88,15 @@
   },
   "active": "e0f0a0c5faab209a",
   "lastOpenFiles": [
-    "git.md",
-    "ulimit.md",
     "Untitled.md",
     "minicom.md",
+    "ssh.md",
+    "pkg-config.md",
+    "git.md",
+    "sync.md",
+    "ulimit.md",
     "ulimit.md",
     "mknod.md",
-    "make.md",
-    "dd.md",
-    "docker.md",
-    "README.md"
+    "make.md"
   ]
 }

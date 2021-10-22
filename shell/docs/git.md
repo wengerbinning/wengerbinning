@@ -1,41 +1,36 @@
-git是一个免费开源DVCS（Distributed Version Control System，分布式版本控制系统），是为了快速高效地处理所有项目的版本变迁，具有易学、体积小等特点。git支持快速管理多个完全独立的本地分支，当推送到远程存储仓库时，你可以指定推送的分支，在git工作中，有Working Directory、Staging Area、Repository三个区，其中Staging Area是可以在提交之前对提交格式化和检查；git项目属于Software Freedom Conservancy。
+Git是一个免费开源分布式版本控制系统（DVCS，Distributed Version Control System），是为了快速高效地处理所有项目的版本变迁，具有易学、体积小等特点。Git支持快速管理多个完全独立的本地分支，当推送到远程存储仓库时，你可以指定推送的分支，在git工作中，有Working Directory、Staging Area、Repository三个区，其中Staging Area是可以在提交之前对提交格式化和检查；git项目属于Software Freedom Conservancy。
+
+---
 
 ## 环境配置
 
-在使用git之前，需要配置用户信息，全局配置文件`~/.gitconfig`，仓库配置文件`<repository>/.git/config`。git提供`git config`来配置信息;当然如果熟悉配置文件，则可以直接修改配置文件。
+在使用git管理之前，需要配置用户信息。git提供`git config`来配置信息。
 
-* 【功能】指定全局默认用户名：
+* 用户相关配置：主要是用户名与邮箱的配置。
 
   ```shell
-  # 指定全局默认的用户名。
-  git config --global user.name <your name>
+  # 指定用户名。
+  git config user.name [<username>]
+  # 指定用户邮箱。
+  git config user.email [<email>]
+  # 查看所有配置信息。
+  git config -l
   ```
 
-  > Note：如果没有--global参数会为当前仓库设置用户信息，当然你的工作目录必须在一个仓库下才能这样使用。
+   如果没有--global参数会为当前仓库设置用户信息，当然你的工作目录必须在一个仓库下才能这样使用。
 
-* 【功能】指定全局默认用户邮箱：
-
-  ```shell
-  # 指定全局默认的用户邮箱。
-  git config --global user.email <your email>
-  ```
-
-* 【功能】支持中文显示：
+* 基础功能配置：主要是一些基础的配置。
 
   ```shell
+   # 支持中文显示。
    git config --global core.quotepath off
    ```
 
-* 【功能】：查看配置信息：
+可以使用`git help config`来查看git config的详细使用方法。这些配置信息都是保存在配置文件中的。相关的配置文件有：
+* `~/.gitconfig`:该文件保存全局的配置信息，在设置信息使用`--global`参数可以将配置保存在该文件中。
+* `<repository>/.git/config`:该文件保存仅在这一个仓库中的配置信息。
 
-  ```shell
-  # 查看所有变量。
-  git config -l
-  # 查看指定变量信息，这里以user.name为例。
-  git config user.name
-  ```
-
-  > Note：可以使用`git help config`来查看git config的详细使用方法。
+---
 
 ## 使用示例
 
@@ -43,7 +38,7 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
 
 ### 本地仓库
 
-* 【功能】新建仓库：新建一个本地仓库。
+* 新建一个本地仓库。
 
   ```shell
   # 初始化当前工作目录为一个新的仓库。默认会在该目录下新建一个.git/来存储生成的仓库信息文件。
@@ -54,9 +49,9 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   git init --base
   ```
 
-  > Note：如果工作目录下存在其他文件，则会有提示，但也可以创建成功。
+  如果工作目录下存在其他文件，则会有提示，但也可以创建成功。
 
-* 【功能】添加文件：将工作目录下新建文件或者更新文件添加到暂存区。
+* 将工作目录下新建文件或者更新文件添加到暂存区。
 
   ```shell
   # 添加新建文件或更新文件到暂存区。
@@ -65,9 +60,9 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   git add *
   ```
 
-  > 暂存区会对添加到暂存区的新建文件或更新文件进行跟踪。当文件未被跟踪或者跟踪的文件发生变更，都需要进行添加文件操作。
+   暂存区会对添加到暂存区的新建文件或更新文件进行跟踪。当文件未被跟踪或者跟踪的文件发生变更，都需要进行添加文件操作。
 
-* 【功能】撤销添加：撤销添加到暂存区的新建文件或者更新文件的操作。
+* 撤销添加到暂存区的新建文件或者更新文件的操作。
 
   ```shell
   # 撤销添加到暂存区的文件，恢复之前文件的状态。

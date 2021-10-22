@@ -1,0 +1,2 @@
+* `~/.profile`
+* `/etc/pofile`

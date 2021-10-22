@@ -1,3 +1,4 @@
+minicom是由Miquel van Smoorenburg负责开发的基于类UNIX的终端模拟器，
 ```shell
 usage: minicom [<option>] [<configure file>]
 
