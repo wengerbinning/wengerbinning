@@ -1,5 +1,4 @@
-内置类型是编程语言支持的基本数据类型，在C++中有算数类型(arithmetic type)与空类型(void)。 算数类型
-主要整数类型与浮点数类型。
+内置类型是C++语言支持的基本数据类型，有算数类型(arithmetic type)与空类型(void)，算数类型又可以分为整数类型与浮点数类型。
 
 ---
 
@@ -17,7 +16,9 @@ char16_t与char32_t是unicode字符子集服务的。
 * `short`：short占半个Word。
 * `int`：int占一个Word。
 * `long`：long占两个Word。
-* `long long`：
+* `long long`：long long 占四个字。
+
+除去布尔与扩展字符类型之外，其他类可以使用unsigned与signed来修饰，默认为signed,表示有符号数；unsigned表示无符号数。
 
 ---
 
