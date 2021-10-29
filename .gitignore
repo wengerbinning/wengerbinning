@@ -11,10 +11,13 @@
 .commit.message
 
 # Some generic matching directorys that do not need be tracked.
-**/.obsidian/**
 **/.idea/**
 **/.vscode/**
-**/cache/**
+**/.obsidian/**
+#
+**/bin/**
+**/lib/**
 **/build/**
-**/imagedir/**
+**/.cache/**
+**/destdir/**
 **/cmake-build-debug/**

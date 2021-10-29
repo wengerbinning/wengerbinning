@@ -43,17 +43,17 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 #================== Project Framework ========================================#
 
 # add -I
-include_directories(${PROJECT_SOURCE_DIR}/include)
+#include_directories(${PROJECT_SOURCE_DIR}/include)
 
-# add -L
-LINK_DIRECTORIES(
-        "/usr/local/lib"
-)
+## add -L
+#LINK_DIRECTORIES(
+#        "/usr/local/lib"
+#)
 
-# add -l
-LINK_LIBRARIES(
-        "ubox"
-)
+## add -l
+#LINK_LIBRARIES(
+#        "ubox"
+#)
 
 # set(CMAKE_STAGING_PREFIX ${PROJECT_SOURCE_DIR}/bin)
 
@@ -97,6 +97,8 @@ set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 #add_executable(test20210822034022 test20210822034022.c)
 
 #add_executable(test20210825143726 test20210825143726.c)
-ADD_EXECUTABLE(test20210910114430 test20210910114430.c)
+#ADD_EXECUTABLE(test20210910114430 test20210910114430.c)
 #ADD_EXECUTABLE(test20210910145806 test20210910145806.c)
-ADD_EXECUTABLE(test20210913154656 test20210913154656.c)
+#ADD_EXECUTABLE(test20210913154656 test20210913154656.c)
+
+add_executable(test20211029112030 test20211029112030.c)
