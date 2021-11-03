@@ -1,6 +1,8 @@
-# C Programming Language
 
-1973年,美国贝尔实验室的DENNIS MACALISTAIR RITCHIE在B语言的基础之上设计出了C语言;并与Ken Thomson使用C语言重写了UNIX,为了推广UNIX操作系统,D.M.RITCHIE在1977年发表了《可移植的C语言编译程序》;在1978年贝尔实验室正式发表了C语言,同时BRIAN W.KERNIGHIAN与D.M.RITCHIE出版的《The C Programming Language》;由于该书中没有完整的标准C语言,后来由ANSI在此基础上指定了C语言标准(ANSI C)并于1983年发布.C语言是一种融合了控制特性的现代语言,具有高效、可移植、允许访问硬件等特点.
+1973年,美国贝尔实验室的DENNIS MACALISTAIR RITCHIE在B语言的基础之上设计出了C语言;并与Ken Thomson使用C语言重写了UNIX,为了推广UNIX操作系统,
+D.M.RITCHIE在1977年发表了《可移植的C语言编译程序》;在1978年贝尔实验室正式发表了C语言,同时BRIAN W.KERNIGHIAN与D.M.RITCHIE出版的
+《The C Programming Language》;由于该书中没有完整的标准C语言,后来由ANSI在此基础上指定了C语言标准(ANSI C)并于1983年发布.C语言是一种融合了
+控制特性的现代语言,具有高效、可移植、允许访问硬件等特点.
 
 ---
 
