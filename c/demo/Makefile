@@ -8,3 +8,4 @@ helloworld.o: helloworld.c
 
 clean:
 	rm -rf *.o
+	rm helloworld

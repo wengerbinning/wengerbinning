@@ -1,0 +1,27 @@
+glibc: "This is GNU C Library."
+  name: "glibc"
+
+linux: "This is Linux kernel."
+
+nginx: "this is web server."
+
+busybox: "This is mini rootfs package."
+
+fcitx: "This a linux input method."
+
+  list: [
+      - name: "fcitx"
+        - version:
+        - url:
+      - name: "fcitx5"
+        - version:
+        - url:
+  ]
+httpd:
+
+opessl:
+
+samba:
+
+u-boot:
+

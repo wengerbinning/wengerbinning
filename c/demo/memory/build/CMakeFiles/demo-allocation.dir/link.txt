@@ -1,1 +1,0 @@
-/usr/bin/cc   -rdynamic CMakeFiles/demo-allocation.dir/demo-allocation.c.o  -o ../demo-allocation 

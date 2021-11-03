@@ -1,3 +1,0 @@
-/home/wbzheng/c/demo/memory/build/CMakeFiles/rebuild_cache.dir
-/home/wbzheng/c/demo/memory/build/CMakeFiles/edit_cache.dir
-/home/wbzheng/c/demo/memory/build/CMakeFiles/demo-memory-allocation.dir
