@@ -1,11 +1,14 @@
+all: helloworld stdio
+
 helloworld: helloworld.o
 	gcc -o helloworld helloworld.o
 
-helloworld.o: helloworld.c
-	gcc -o helloworld.o -c helloworld.c
+file_manager/file_fopen: stdio
+	gcc -o file_manager/file_fopen file_manager/file_fopen.o
 
 .PHONY: clean
 
 clean:
+
 	rm -rf *.o
 	rm helloworld

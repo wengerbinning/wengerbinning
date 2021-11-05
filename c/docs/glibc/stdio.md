@@ -1,4 +1,4 @@
-stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入与输出。
+stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入与输出。以下函数原型均来自glibc-2.34。
 
 定义的数据类型有size_t、FILE、fpos_t。
 
@@ -34,16 +34,26 @@ stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入�
 * `FILE *stdout`
 * `FILE *stderr`
 
-定义了一下函数
+定义以下下函数
 
 
 * `FILE* fopen(const char *filename, const char *mode);`
 
-  根据指定的模式打开文件，返回一个FILE指针。
+  根据指定的模式打开文件，返回一个FILE指针。filename是一个文件的路径，mode是指打开文件的方式有r、w、a、r+、w+、a+。
 
   ```c
-  int
-  __libc_open (const char *file, int oflag)
+  // function declaration.
+  extern FILE *fopen 
+      (const char *__restrict __filename, const char *__restrict __modes) 
+      __attribute_malloc__ __attr_dealloc_fclose __wur;
+  
+  libc_hidden_def (__libc_open)
+  weak_alias (__libc_open, __open)
+  libc_hidden_weak (__open)
+  weak_alias (__libc_open, open)
+  
+  // 
+  int __libc_open (const char *file, int oflag)
   {
         int mode;
   
@@ -64,8 +74,6 @@ stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入�
         __set_errno (ENOSYS);
         return -1;
   }
-
-  
   ```
   
 * `int fclose(FILE *stream);`
@@ -73,9 +81,110 @@ stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入�
   关闭一个文件流对象。
 
   ```c
+  // function declaration.
+  extern int fclose (FILE *__stream);
+  
+  //
+  int __close (int fd)
+  {
+      if (fd < 0)
+      {
+          __set_errno (EBADF);
+          return -1;  
+      }
 
-
+      __set_errno (ENOSYS);
+      return -1;
+  }
   ```
+
+以下操作是一些格式化的输入与输出的函数。
+
+* `int fprintf(FILE *stream, const char *format, ...);`
+
+  格式化输出内容到文件流中。
+
+  ```c
+  // function decalation.
+  extern int fprintf (FILE *__restrict __stream, const char *__restrict __format, ...);
+  
+  //
+  ldbl_hidden_def (__fprintf, fprintf)
+  ldbl_strong_alias (__fprintf, fprintf)
+  
+  //
+  int __fprintf (FILE *stream, const char *format, ...)
+  {
+      va_list arg;
+      int done;
+  
+      va_start (arg, format);
+      done = __vfprintf_internal (stream, format, arg, 0);
+      va_end (arg);
+  
+      return done;
+  }
+  ```
+
+* `int printf(const char *format, ...);`
+
+  格式化输出内容到标准输出。
+  
+  ```c
+  // function declaration.
+  extern int printf (const char *__restrict __format, ...);
+  
+  //
+  ldbl_strong_alias (__printf, printf);
+  ldbl_strong_alias (__printf, _IO_printf);
+
+  //
+  int __printf (const char *format, ...)
+  {
+      va_list arg;
+      int done;
+  
+      va_start (arg, format);
+      done = __vfprintf_internal (stdout, format, arg, 0);
+      va_end (arg);
+  
+      return done;
+  }
+  ```
+
+* `int sprintf(char *str, const char *format, ...);`
+
+  格式化输出内容到字符变量中。
+
+  ```c
+  // function decalation.
+  extern int sprintf (char *__restrict __s, const char *__restrict __format, ...) __THROWNL;
+  
+  //
+  ldbl_hidden_def (__sprintf, sprintf)
+  ldbl_strong_alias (__sprintf, sprintf)
+  ldbl_strong_alias (__sprintf, _IO_sprintf)
+  
+  // 
+  int __sprintf (char *s, const char *format, ...)
+  {
+      va_list arg;
+      int done;
+
+      va_start (arg, format);
+      done = __vsprintf_internal (s, -1, format, arg, 0);
+      va_end (arg);
+
+      return done;
+  }
+  ```
+
+* `int vfprintf(FILE *stream, const char *format, va_list arg);`
+
+* `int vprintf(const char *format, va_list arg);`
+
+* `int vsprintf(char *str, const char *format, va_list arg);`
+
   
 * `size_t fread(void *ptr, size_t size, size_t nmemb, FFLE *stream);`
 * `int fgetpos(FILE *stream);`
@@ -97,12 +206,6 @@ stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入�
 * `int setvbuf(FILE *stream, char *buffer, int mode, size_t size);`
 * `FILE* tmpfile(void);`
 * `char* tmpnam(char *str);`
-* `int fprintf(FILE *stream, const char *format, ...);`
-* `int printf(const char *format, ...);`
-* `int sprintf(const *str, const char *format, ...);`
-* `int vfprintf(FILE *stream, const char *format, va_list arg);`
-* `int vprintf(const char *format, va_list arg);`
-* `int vsprintf(char *str, const char *format, va_list arg);`
 * `int fscanf(FILE *stream, const char *format, ...);`
 * `int scanf(const char *format, ...);`
 * `int sscanf(const char *str, const char *format, ...);`
@@ -143,23 +246,4 @@ stdio.h中定义了三种类型，宏、以及函数。来实现数据的输入�
 #undef __need_FILE
 
 #ifndef __FILE_defined
-
-
 ```
-
-> macro
-
-```c
-
-```
-
->> basic type
-
->> pointer
-
->> struct
-
-
-
-> function
-> 
