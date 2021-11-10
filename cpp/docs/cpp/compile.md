@@ -4,6 +4,19 @@
 
 ## 预处理
 
+预处理器(preprocessor)
+
+* 头文件保护符(header guard)用于防止头文件被多次引入。
+
+```c++
+#ifndef __EXAMPLE_H__
+#define __EXAMPLE_H__
+
+# todo
+
+#endif
+```
+
 ## 汇编
 
 ## 编译
