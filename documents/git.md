@@ -269,6 +269,12 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   git branch -D <branch>
   ```
 
+### 标签管理
+
+标签有两种，一种简单标签，一种带注释的标签。
+
+* git push origin <tag> 推送标签。
+
 ### 版本回溯
 
 * 【功能】撤销提交变更：
@@ -329,6 +335,14 @@ git在使用ssh连接clone的仓库时。在服务器端配置好public key之�
 host <service host>
     IdentityFile ~/.ssh/key/<private file>
 ```
+
+
+###
+
+* `git reflog`查看HEAD的变化状态。
+
+
+× `git symbolic-ref HEAD refs/heads/develop` 安全切换到develop分支
 
 ## LINKS
 * [官方网站](https://git-scm.com/) ☛ <https://git-scm.com/>
