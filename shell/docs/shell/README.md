@@ -12,4 +12,13 @@ echo具有以下参数
 
 
 ---------
- 
+使用exec可以用来打开一个文件并指定一个文件描述符
+
+```shell
+# 使用文件描述符3指定到log.txt文件。
+exec 3>>log.txt
+
+echo comment >&3
+
+
+``` 

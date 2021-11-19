@@ -1,0 +1,95 @@
+GNU gcc是Linux上常用的C编译器
+环境变量：
+
+CPPFLAGS一般用于指定预处理的参数
+
+```
+CPPFLAGS="-DNODEBUG"
+```
+
+> Note: NODEBUG是一个标准的ANSI宏，表示不进行调试编译
+
+CFLAGS一般用于指定头文件查找路径。
+
+```
+CFLAGS=“-I./include”
+```
+
+LDFLAGS一般用于指定链接器搜索共享库的路径。
+
+```
+LDFLAGS=“-L./lib”
+```
+
+LIBS一般用于指定依赖库。
+
+```
+LIBS="-lssl"
+```
+
+LD_LIBRARY_PATH一般用来指定搜索路径，近来使用LD_RUN_PATH
+
+GCC参数的使用
+
+* -D参数用于在编译时声明一个宏。一般有两种用法。
+
+直接指定宏名，相当于`#define DEBUG`
+
+```shell
+gcc -DDEBUG
+```
+
+另一种用法是指定值的用法，相当于`#define LOG_LEVEL=1`
+
+```shell
+gcc -DLOG_LEVEL=1
+```
+
+* -O参数用于指定优化级别,共有5种优化级别
+
+  1. -O0 默认等级。
+  2. -O1 基本优化。
+  3. -O2 推荐优化。
+  4. -O3 最高优化。
+  5. -Os 优化代码尺寸。
+
+* -Wp用于将参数传递给预处理器。
+* -Xpreprocessor
+
+* -Wa用于将参数传递给汇编器。
+* -Xassembler
+
+* -Wl用于将参数传递给链接器。
+* -Xlinker
+
+* -pipe指定使用管道而不是中间文件
+
+
+* -f系列参数
+
+  1. `-fpic`与`-fPIC`作用于编译阶段，PIC(position independent code)，使编译期生成与位置无关的动态链接，即实现共享库的独立，在每一个程
+      序使用该共享库时，实现代码共享，而不是维护一个库的镜像。在生成共享库时，推荐使用该参数。都是为了在动态库中生成位置无关的代码。
+      通过全局偏移表（GOT）访问所有常量地址。程序启动时动态加载程序解析。推荐使用`-fPIC`。-fPIC与-fpic都是在编译时加入的选项，
+      用于生成位置无关的代码(Position-Independent-Code)。这两个选项都是可以使代码在加载到内存时使用相对地址，所有对固定地址的访问都通      过全局偏移表(GOT)来实现。-fPIC和-fpic最大的区别在于是否对GOT的大小有限制。-fPIC对GOT表大小无限制，所以如果在不确定的情况下，使       用-fPIC是更好的选择。
+
+  2. `-fno-caller-saves`
+
+  3. `-fhonour-copts`
+
+  4. `-fhonour-copts`
+
+  5. `-fpie`与`-fPIE`相同，与PIC与pic相同，但是用于生成可执行文件。
+
+  6. `-ffunction-sections`指示gcc将每个函数(包括静态函数)放在自己的名为.text.function\u name的节中，而不是将所有函数放在一个大的.text      节中.
+
+  7. `-fdata-sections`它放置每个全局或静态变量到 .data.variable_name、.rodata.variable_name 或 .bss.variable_name
+
+
+* -m系列参数
+
+  1. `-march=`指定目标文件的系统平台
+  2. `-mcpu=`指定cpu架构。
+
+* -g系列参数用于配置调试器选项。
+
+  1. 

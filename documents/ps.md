@@ -1,0 +1,8 @@
+ps 是一个查看进程的工具
+
+`R` -- `TASK_RUNNING`
+`S` -- `TASK_INTERRUPTIBLE`
+`D` -- `TASK_UNINTERRUPTIBLE`
+`T` -- `TASK_STOPPED` or `TASK_TRACED`
+`Z` -- `TASK_DEAD` - `EXIT-ZOMBIE`
+`X` -- `TASK_DEAD` - `EXIT_DEAD`
