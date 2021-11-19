@@ -1,7 +1,5 @@
 Git是一个免费开源分布式版本控制系统（DVCS，Distributed Version Control System），是为了快速高效地处理所有项目的版本变迁，具有易学、体积小等特点。Git支持快速管理多个完全独立的本地分支，当推送到远程存储仓库时，你可以指定推送的分支，在git工作中，有Working Directory、Staging Area、Repository三个区，其中Staging Area是可以在提交之前对提交格式化和检查；git项目属于Software Freedom Conservancy。
 
----
-
 ## 环境配置
 
 在使用git管理之前，需要配置用户信息。git提供`git config`来配置信息。
@@ -15,6 +13,10 @@ Git是一个免费开源分布式版本控制系统（DVCS，Distributed Version
   git config user.email [<email>]
   # 查看所有配置信息。
   git config -l
+  # 指定一个默认仓库。
+  git config --global init.defaultBranch master
+  
+  git config advice.addIgnoredFile false
   ```
 
    如果没有--global参数会为当前仓库设置用户信息，当然你的工作目录必须在一个仓库下才能这样使用。
@@ -30,134 +32,151 @@ Git是一个免费开源分布式版本控制系统（DVCS，Distributed Version
 * `~/.gitconfig`:该文件保存全局的配置信息，在设置信息使用`--global`参数可以将配置保存在该文件中。
 * `<repository>/.git/config`:该文件保存仅在这一个仓库中的配置信息。
 
----
-
-## 使用示例
 
 Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本回溯、解决冲突、服务搭建等主要内容。
 
-### 本地仓库
+## 本地仓库
 
-* 新建一个本地仓库。
+* `git init`初始化一个新仓库。
 
-  ```shell
-  # 初始化当前工作目录为一个新的仓库。默认会在该目录下新建一个.git/来存储生成的仓库信息文件。
-  git init
-  # 指定一个工作目录初始化为新的仓库。
-  git init <directory>
-  # 初始化当前工作目录为一个新的裸库。即直接在当前工作目录下生成仓库信息文件。
-  git init --base
-  ```
+仓库可以分为裸库与非裸库，裸库是没有工作区的仓库，一般在远程仓库是不需要工作区来对本地仓库进行修改，所以一般都是初始化为裸库。而在本地仓库需要
+修改，所以需要初始化为非裸库。裸库与非裸库的区别是，非裸库是将仓库所有的信息维护在一个.git的子目录下，而裸库是直接维护在工作目录或指定目录下。
+默认创建的是非裸库。
 
-  如果工作目录下存在其他文件，则会有提示，但也可以创建成功。
+```shell
+# 初始化一个本地仓库。缺省在当前工作目录初始化。
+git init
+# 初始化一个本地仓库。指定仓库的路径。
+git init <path>
+# 初始化一个本地仓库。初始化为一个裸库。
+git init --base
+```
 
-* 将工作目录下新建文件或者更新文件添加到暂存区。
+> Note: 仓库的路径是可以是绝对路径，也可以是相对路径。如果路径不存在，git会递归的创建并初始化。
 
-  ```shell
-  # 添加新建文件或更新文件到暂存区。
-  git add <file>
-  # 将当前工作目录下所有新建文件或更新文件添加到暂存区。
-  git add *
-  ```
+* `git add`来实现将文件添加到暂存区，暂存区的文件会被跟踪。
 
-   暂存区会对添加到暂存区的新建文件或更新文件进行跟踪。当文件未被跟踪或者跟踪的文件发生变更，都需要进行添加文件操作。
+暂存区是位于工作区与仓库之前的桥梁，可以与仓库与工作区的文件进行对比；文件被添加到仓库中之前，必须被添加到暂存区；而且如果已添加到暂存区的文件
+再次被修改，需要重现添加到暂存区来保持最新的修改可以被提交。所以变更包含新增文件和已添加文件的更新。所有文件需在工作区中。
 
-* 撤销添加到暂存区的新建文件或者更新文件的操作。
+```shell
+# 将工作区中当前目录下需要被跟踪的变更添加到暂存区。包含隐藏文件。
+git add .
+# 将指定文件添加到暂存区。
+git add <file path>
+# 将当前工作目录下所有变更都添加到暂存区。跳过隐藏文件。
+git add *
+# 将指定文件添加到暂存区，将会跳过`.gitignore`文件检查。
+git add -f <file path>
+```
 
-  ```shell
-  # 撤销添加到暂存区的文件，恢复之前文件的状态。
-  git restore --staged <file>
-  ```
+> Note: file path可以是一个工作区中的文件路径、目录路径以及模糊匹配(*.c表示所有的c文件)三种类型。
 
-* 【功能】提交变更：将暂存区跟踪文件的变更进行提交。
+`.gitignore`文件是一个配置文件，指定哪些文件不需要添加到仓库中。可以存在多个文件。
 
-  ```shell
-  # 将暂存区。
-  git commit -m <commit>
-  # 首先会检查暂存区已跟踪的文件是否有更新文件，然后将更新文件添加到暂存区，最后提交此次变更。
-  git commit  -am <comment>
-  ```
+* 对暂存区中的变更做一次提交。使用`git commit`来对暂存区中的变更做一次提交。
 
-  > Note：每一次变更提交都具有一个commit id来标识此次提交。
+提交是git维护对象，每一个提交有一个commit id来标识，一般提交必须有一个提交描述，没有描述会无法提交。通过`git commit`来进行提交。
 
-* 【功能】文件对比：将工作目录下的更新文件、暂存区下的跟踪文件以及仓库中的存储文件进行对比。
+```shell
+# 将暂存区中内容做一次提交，并通过默认编辑器打开一个文件来填写描述信息。
+git commit
+# 将暂存区中内容做一次提交，通过-m来指定一段描述信息。
+git commit -m <commit message>
+# 将暂存区中内容做一次提交，通过-a参数来对暂存区的文件进行检查，如果已经被修改，则将修改内容添加到暂存区之后再做提交。
+git commit -a
+git commit -am <commit message>
+# 将暂存区中内容做一次提交，通过-F参数来指定一个描述文件。
+git commit -F <message file path>
+```
 
-  ```shell
-  # 将暂存区下的跟踪文件与工作目录下的更新文件进行对比。
-  git diff <file>
-  # 将当前提交与上一次提交的变更文件进行对比。
-  git show <file>
-  ```
+* 恢复文件的变更。通过`git restore`来恢复文件。
 
-* 【功能】检查工作区：将工作区与暂存区进行对比显示。
+恢复文件的变更需要文件已添加到仓库或暂存区才能恢复。
 
-  ```shell
-  # 将工作区与暂存区进行对比显示。
-  git status
-  ```
+```shell
+# 根据暂存区中内容撤销工作区的内容，执行后工作区中已被跟踪的文件，将恢复到暂存区中的状态。
+git restore <file path>
+# 根据仓库中内容撤销暂存区中内容，执行后暂存区恢复与仓库一致的状态。
+git restore --staged <file path>
+````
 
-* 【功能】设定标签：为每一次提交设定一个标签。
+* 查看暂存区与工作区中的状态，通过`git status`查看暂存区与工作区中的状态。
 
-  ```shell
-  # 为当前分支的HEAD设定一个标签。
-  git tag <tag name>
-  # 为指定提交设定一个标签。
-  git tag -a <tag name> <commit id> -m <messgae>
-  # 显示当前分支的所有标签。
-  git tag
-  # 删除一个标签。
-  git tag -d <label>
-  ```
+```shell
+# 显示工作区状态。
+git status
+# 以简洁的格式显示状态。
+git status -s
+#　显示未跟踪的文件。
+git status -u
+# 显示忽略的文件。
+git status --ignored
+# 以图形的方式查看日志。
+git log --graph
+```
 
-  > Note：标签相当于commit id的一个别名，是为了以后便于版本的回溯。
+* 展示提交的信息，通过`git show`来展示当前提交或指定提交的信息及内容。
+
+```shell
+git show
+# 将当前提交与上一次提交的变更文件进行对比。
+git show <file>
+```
+
+* 差异对比，通过`git diff`查看文件的差异
+
+```shell
+git diff
+```
+
+* 撤销提交，`git reset`实现撤销提交
+
+* `git revert`实现增量撤销提交
+
+
+* 设定标签：为每一次提交设定一个标签。
+
+```shell
+# 为当前分支的HEAD设定一个标签。
+git tag <tag name>
+# 为指定提交设定一个标签。
+git tag -a <tag name> <commit id> -m <messgae>
+# 显示当前分支的所有标签。
+git tag
+# 删除一个标签。
+git tag -d <label>
+```
+
+> Note：标签相当于commit id的一个别名，是为了以后便于版本的回溯。
 
 * 【功能】创建分支：为当前默认主分支master创建一个分支。
 
-  ```shell
-  # 为当前分支创建一个分支。
-  git branch <branch name>
-  # 切换分支。
-  git switch <branch>
-  # 显示该仓库的所有分支。
-  git branch
-  # 删除一个分支。在删除前会检查当前分支是否被合并如果未合并，则删除失败。
-  git branch -d <branch>
-  # 直接删除分支。
-  git branch -D <branch>
-  ```
+```shell
+# 为当前分支创建一个分支。
+git branch <branch name>
+# 切换分支。
+git switch <branch>
+# 显示该仓库的所有分支。
+git branch
+# 删除一个分支。在删除前会检查当前分支是否被合并如果未合并，则删除失败。
+git branch -d <branch>
+# 直接删除分支。
+git branch -D <branch>
+```
 
-  > Note：创建分支其实是创建一个分支地址指向当前分支的HEAD，并没有复制文件。
+> Note：创建分支其实是创建一个分支地址指向当前分支的HEAD，并没有复制文件。
 
-* 【功能】查看仓库状态：
+* 清理以及切换分支，`git checkout`
 
-  ```shell
-  # 显示工作区状态。
-  git status
-  # 以简洁的格式显示状态。
-  git status -s
-  #　显示未跟踪的文件。
-  git status -u
-  # 显示忽略的文件。
-  git status --ignored
-  # 以图形的方式查看日志。
-  git log --graph
-  ```
+```shell
+# 撤销文件在工作区的修改，是工作区文件与暂存区文件保持一致。
+git checkout -- <file>
+```
 
-* 【功能】撤销文件改动：
+* 合并分支，通过`git merge`与`git rebase`实现分支合并。 
 
-  ```shell
-  # 撤销文件在工作区的修改，是工作区文件与暂存区文件保持一致。
-  git checkout -- <file>
-  # 撤销文件在暂存区的添加，是暂存区文件与仓库中文件保持一致。
-  git reset HEAD <file>
-  # 撤销一次提交。
-  git revert
-  # 恢复文件。
-  git restore
-  git rebase
-  ```
-
-### 远程仓库
+## 远程仓库
 
 * 【功能】克隆远程仓库：
 
@@ -201,8 +220,16 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   git remote -v
   git add <remote label> <url>
   ```
+  
+* 设置本地仓库的上游分支，在远程仓库中新建一个与本地同名的仓库，并将远程仓库与本地仓库进行映射。
 
-### 仓库文件
+```shell
+# 设置本地仓库的上游分支develop
+git pull --set-upstream origin develop
+git pull -u origin test:
+```
+
+## 仓库文件
 
 * 【功能】删除仓库文件：
 
@@ -229,7 +256,7 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   git mv
   ```
 
-### 分支管理
+## 分支管理
 
 * 【功能】新建分支：
 
@@ -249,6 +276,8 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   git checkout <branch>
   # 新建分支并切换到新建的分支。
   git checkout -b <branch>
+  git checkout -b test origin/develop
+  git checkout --track origin/test
   ```
 
 * 【功能】合并分支：
@@ -266,7 +295,11 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
   # 删除已存在并已被合并的分支。
   git branch -d <branch>
   # 强行删除分支
-  git branch -D <branch>
+  git branch -D <branch> 
+  
+  # 删除远程分支
+  git push origin :<remote branch>
+  git push origin --delete <remote branch>
   ```
 
 ### 标签管理
@@ -314,20 +347,12 @@ Git的使用主要有管理本地仓库、远程仓库、仓库文件、版本�
 * .gitattuributes
 * .mailmap
 
-
 ## 原理分析
 
 git是一个版本控制器，由工作区、缓存区、本地仓库、远程仓库组成 
 
 
 分支即一条提交的链表，master为主分区，HEAD为当前分支的最后一次提交。每一次提交包含前一次提交的commit id。
-
-
-
-
-## 
-
-
 
 git在使用ssh连接clone的仓库时。在服务器端配置好public key之后，如果key文件的路径是自己配置的，需要在.ssh/config文件中指定private key文件的路径
 
@@ -337,7 +362,7 @@ host <service host>
 ```
 
 
-###
+
 
 * `git reflog`查看HEAD的变化状态。
 
@@ -345,4 +370,5 @@ host <service host>
 × `git symbolic-ref HEAD refs/heads/develop` 安全切换到develop分支
 
 ## LINKS
+
 * [官方网站](https://git-scm.com/) ☛ <https://git-scm.com/>
