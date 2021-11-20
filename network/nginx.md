@@ -21,7 +21,6 @@ nginx
   
   配置文件可以使用htpasswd或者openssl来生成。
 
-    
 nginx是一个web服务器。
 
 

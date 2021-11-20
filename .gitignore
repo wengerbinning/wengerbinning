@@ -21,4 +21,8 @@
 **/build/**
 **/.cache/**
 **/destdir/**
+
+**/cache/**
+**/build/**
+**/imagedir/**
 **/cmake-build-debug/**
