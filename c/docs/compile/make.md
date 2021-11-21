@@ -1,6 +1,33 @@
-make是一个根据Makefile自动构建的工具集，可以构建任何编程语言的项目。在使用make构建之前，需要你编辑一个makefile的文档，该文档是构建的依据。
+# make
 
-makefile共有5部分组成：明确规则、模糊规则、定义变量、指令与注释组成。makefile的注释由`#`来标识。
+makes是一个自动化构建工具，有GNU make, BSN make, GNUStep make， Borland make等，这些工具间不兼容，所以这里以Linux中最常用的GUN make作为学习目标。
+make会根据Makefile中的规则，判断目标文件与依赖文件的修改时间，如果依赖文件中存在较新的修改，则执行该条规则中的构建命令，否则不执行。因此make会保持所有的
+目标文件比其所依赖的文件更加新，该工具的主要学习内容是Makefile的规则编写。
+
+Makefile由变量、规则以及注释组成。makefile的注释由`#`来标识。每一条规则有目标文件、依赖文件以及构建指令组成。make会默认执行第一条规则。
+
+
+## 宏
+
+在make中支持宏功能，可以创建与使用宏功能。宏在一些教程中合并到变量中，实际内容需要你自己选择。
+
+```Makefile
+CC = gcc
+CPPFLAGS =
+CFLAGS = -fPIC -pipe
+LDFLAGS =
+LIBS = 
+```
+
+在这些宏中有一些宏需要我特别注意一下。
+
+* `CC`
+
+* `CPPFLAGS`
+
+* `FLAGS`
+
+* `LDFLAGS`
 
 ## 变量
 
@@ -76,6 +103,24 @@ make CC=gcc CFLAGS="-I/usr/include -I/include"
 空目标文件命令部分都会使用“touch”在完成所有命令之后来更新目标文件的时间戳，记录此规则
 命令的最后执行时间。 make 时通过命令行将此目标作为终极目标，当前目录下如果不存在这个文
 件，“touch”会在第一次执行时创建一个空的文件（命名为空目标文件名）。空命令的唯一作用是防止make在执行时，试图为重建这个目标去查找隐含命令
+
+
+
+## 规则
+
+在Makefile中，每一条规则都是由目标文件、依赖文件以及构建指令组成。这些规则又可以分为明确的规则、模糊的规则以及一些特殊的规则等。
+
+* 明确的规则是目标文件、依赖文件以及构建指令共同组成，可以使用变量替代某些内容。
+
+每一条明确的规则包含目标文件、依赖文件以及构建指令。目标文件与依赖文件之间以`:`分隔，目标文件通常只有一个、依赖文件可以有多个并使用空格分隔（将目标文件爱你与
+依赖文件所在的行称为依赖行）；构建指令在依赖行之后并以`tab`作为起始，可以存在多行。
+
+```Makefile
+# 根据event.o、message.o 、log.o来构建logger文件。
+logger：event.o message.o log.o
+	gcc -o logger event.o message.o log.o
+	echo "logger has built."
+```
 
 
 ## LINKS
