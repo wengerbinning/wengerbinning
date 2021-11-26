@@ -1,8 +1,0 @@
-//
-// Created by wenger on 2021/9/10.
-//
-
-#ifndef TEST_TEST20210910114430_H
-#define TEST_TEST20210910114430_H
-
-#endif //TEST_TEST20210910114430_H

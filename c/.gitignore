@@ -1,12 +1,9 @@
-**/bin/**
-**/lib/**
-
-**/build/**
-**/cmake-build-debug/**
-**/destdir/**
-
-**/*.log
 **/*.o
 **/*.a
 **/*.so
+
+**/bin/**
+**/lib/**
+
+
 
