@@ -17,7 +17,7 @@
 * 所有的异常都是从java.lang.Exception类继承的子类,Exception与Error都是继承自Throwable.其中Exception主要有两个子类IOException与RuntimeException;Error通常指运行时环境发生的错误.
 * Java程序通常不会捕获错误异常.
 
-* Java中内置的异常类: --- Java语言定义了一些异常类在java.lang标准包中.	
+* Java中内置的异常类: --- Java语言定义了一些异常类在java.lang标准包中.    
 
   * 非检查性异常:
 

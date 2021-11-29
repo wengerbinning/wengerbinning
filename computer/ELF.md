@@ -36,8 +36,8 @@ ELF头部具有以下属性：
 遇到的一些节
 
 * `.interp` -- `PROGBITS`
-* `.hash` -- 	`HASH`
-* `.init` -- 	`PROGBITS`
+* `.hash` --     `HASH`
+* `.init` --     `PROGBITS`
 * `.plt`
 * `.text`
 * `.rodata`

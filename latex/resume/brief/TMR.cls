@@ -41,10 +41,10 @@
 \newcommand{\recipient}[2]{\def\@recipientname{#1}\def\@recipientaddress{#2}}
 
 \NewDocumentCommand{\name}{o m o}{%
-	\def\@name{#2}
-	\IfNoValueTF{#1}
-	{\IfNoValueTF{#3}{\fullname{\@name}}{\fullname{\@name,~#3}}}
-	{\IfNoValueTF{#3}{\fullname{#1~\@name}}{\fullname{#1~\@name,~#3}}}
+    \def\@name{#2}
+    \IfNoValueTF{#1}
+    {\IfNoValueTF{#3}{\fullname{\@name}}{\fullname{\@name,~#3}}}
+    {\IfNoValueTF{#3}{\fullname{#1~\@name}}{\fullname{#1~\@name,~#3}}}
 }
 
 % Define styles for text
@@ -61,35 +61,35 @@
 \coverlettertrue
 
 \newcommand{\hidecoverletter}{
-	\coverletterfalse
+    \coverletterfalse
 }
 
 % Runs pre- & post-commands for coverletter doc
 \NewEnviron{coverletter}{
-	\ifcoverletter
-		% Construct topmatter
-		\tmrheader
-		\hrulefill
-		\tmrtitle
-		\thispagestyle{empty}
-		
-		\BODY
-		
-		% Construct bottom matter
-		\tmrclosing
-	\fi
+    \ifcoverletter
+        % Construct topmatter
+        \tmrheader
+        \hrulefill
+        \tmrtitle
+        \thispagestyle{empty}
+        
+        \BODY
+        
+        % Construct bottom matter
+        \tmrclosing
+    \fi
 }
 
 
 % Runs pre- & post-commands for resume doc
 \newenvironment{resume}{
-	\clearpage
-	\setcounter{page}{1}
-	\pagestyle{fancy}
-	
-	% Construct top & bottom matter
-	\tmrheader
-	\tmrfooter
+    \clearpage
+    \setcounter{page}{1}
+    \pagestyle{fancy}
+    
+    % Construct top & bottom matter
+    \tmrheader
+    \tmrfooter
 }{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -98,27 +98,27 @@
 
 % Makes page header from details
 \newcommand{\tmrheader}{
-	\begin{center}
-	
-	% Author name
-	{\Huge\textbf{\@name}\\}
-	
-	% Address & phone number
-	\textit{\faicon{map-marker}
-	\@address\quad\faicon{mobile} \@phone}\\
-	
-	% Social/online accounts
-	{\small
-		\mbox{\faEnvelope~\href{mailto:\@email}{\@email}}
-		\ifdefined\@homepage\mbox{\pipe\faHome~\href{http://\@homepage}{\@homepage}}\fi
-		\ifdefined\@github\mbox{\pipe\faGithubSquare~\href{https://github.com/\@github}{\@github}}\fi%
-		\ifdefined\@linkedin\mbox{\pipe\faLinkedinSquare~\href{https://www.linkedin.com/in/\@linkedin}{\@linkedin}}\fi
-		\ifdefined\@twitter\mbox{\pipe\faTwitterSquare~\href{https://twitter.com/\@twitter}{\@twitter}}\fi
-		\ifdefined\@instagram\mbox{\pipe\faInstagram~\href{https://www.instagram.com/\@instagram}{\@twitter}}\fi
-		\ifdefined\@flickr\mbox{\pipe\faFlickr~\href{https://www.flickr.com/photos/\@flickr}{\@flickr}}\fi
-		\ifdefined\@wechat\mbox{\pipe\faWechat~\@wechat}\fi
-	}	
-	\end{center}
+    \begin{center}
+    
+    % Author name
+    {\Huge\textbf{\@name}\\}
+    
+    % Address & phone number
+    \textit{\faicon{map-marker}
+    \@address\quad\faicon{mobile} \@phone}\\
+    
+    % Social/online accounts
+    {\small
+        \mbox{\faEnvelope~\href{mailto:\@email}{\@email}}
+        \ifdefined\@homepage\mbox{\pipe\faHome~\href{http://\@homepage}{\@homepage}}\fi
+        \ifdefined\@github\mbox{\pipe\faGithubSquare~\href{https://github.com/\@github}{\@github}}\fi%
+        \ifdefined\@linkedin\mbox{\pipe\faLinkedinSquare~\href{https://www.linkedin.com/in/\@linkedin}{\@linkedin}}\fi
+        \ifdefined\@twitter\mbox{\pipe\faTwitterSquare~\href{https://twitter.com/\@twitter}{\@twitter}}\fi
+        \ifdefined\@instagram\mbox{\pipe\faInstagram~\href{https://www.instagram.com/\@instagram}{\@twitter}}\fi
+        \ifdefined\@flickr\mbox{\pipe\faFlickr~\href{https://www.flickr.com/photos/\@flickr}{\@flickr}}\fi
+        \ifdefined\@wechat\mbox{\pipe\faWechat~\@wechat}\fi
+    }    
+    \end{center}
 }
 
 
@@ -126,41 +126,41 @@
 \newif\iffullfooter
 
 \newcommand{\fullfooter}{
-	\fullfootertrue
+    \fullfootertrue
 }
 
 \newcommand{\tmrfooter}{
-	
-	% Empty header fields
-	\fancyhead{}
-	
-	\iffullfooter
-		% Set left field to today's date
-		\lfoot{\foottext{\today}}
-			
-		% Set middle field to name, document type
-		\cfoot{\foottext{\@fullname~\textbar~R\'esum\'e}}	
-		
-		% Set right field to page number
-		\rfoot{\foottext{\thepage}}	
-	\fi
+    
+    % Empty header fields
+    \fancyhead{}
+    
+    \iffullfooter
+        % Set left field to today's date
+        \lfoot{\foottext{\today}}
+            
+        % Set middle field to name, document type
+        \cfoot{\foottext{\@fullname~\textbar~R\'esum\'e}}    
+        
+        % Set right field to page number
+        \rfoot{\foottext{\thepage}}    
+    \fi
 }
 
 
 % Makes recipient section from details & dates letter
 \newcommand{\tmrtitle}{ 
-	
+    
     \textbf{\@recipientname}\hfill\textit{\today}\\
-  	\@recipientaddress \\\\\\
-	\@greeting,
+      \@recipientaddress \\\\\\
+    \@greeting,
 }
 
 
 % Signs off letter
 \newcommand{\tmrclosing}{
-	\vspace{10mm}\filbreak
-	\@farewell, \\\\ \textbf{\@fullname} \\\\
-	\textit{Attached: R\'esum\'e	}%
+    \vspace{10mm}\filbreak
+    \@farewell, \\\\ \textbf{\@fullname} \\\\
+    \textit{Attached: R\'esum\'e    }%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,13 +199,13 @@
 \newif\ifpublicversion
 
 \newcommand{\public}{
-	\publicversiontrue
+    \publicversiontrue
 }
 
 \newcommand{\private}[1]{
-	\ifpublicversion[redacted]\else#1\fi
+    \ifpublicversion[redacted]\else#1\fi
 }
 
 \newcommand{\reference}[1]{
-	\ifpublicversion\else\includepdf[pages=-]{#1}\fi
+    \ifpublicversion\else\includepdf[pages=-]{#1}\fi
 }

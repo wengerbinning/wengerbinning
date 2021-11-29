@@ -2,4 +2,4 @@ GPG(GnuPG, GNU Privacy Guard)是一款用于加密、数字签名以及产生非
 
 IETF对PGP进行标准化，PGP标准化后称为OpenPGP。
 
-	
+    

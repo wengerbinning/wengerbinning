@@ -17,16 +17,16 @@
       ```java
       public class TestIO {
       
-      	public static void main(String[] args) {
-      		Scanner scannerDemo = new Scanner(System.in);	//新建一Scanner对象
-      		System.out.print("请输入文件名 : ");
-      		String fileName = scannerDemo.nextLine();		//获取字符串
-      		System.out.print("请输入文件大小(Byte) : ");
-      		int fileSize = scannerDemo.nextInt();			//获取整型
-		
-      		System.out.println("文件名为 : "+fileName);
-      		System.out.println("文件大小 : "+fileSize+" Byte ");
-      	}
+          public static void main(String[] args) {
+              Scanner scannerDemo = new Scanner(System.in);    //新建一Scanner对象
+              System.out.print("请输入文件名 : ");
+              String fileName = scannerDemo.nextLine();        //获取字符串
+              System.out.print("请输入文件大小(Byte) : ");
+              int fileSize = scannerDemo.nextInt();            //获取整型
+        
+              System.out.println("文件名为 : "+fileName);
+              System.out.println("文件大小 : "+fileSize+" Byte ");
+          }
       }
       ```
 
@@ -34,9 +34,9 @@
 
   ```java
   int intDemo = 10;
-  System.out.print( "<content>" );				//原样输出
-  System.out.println( "<content>" );				//原样输出后再输出一个回车换行符
-  System.out.printf( "%d",intDemo );				//与C语言的printf函数一样
+  System.out.print( "<content>" );                //原样输出
+  System.out.println( "<content>" );                //原样输出后再输出一个回车换行符
+  System.out.printf( "%d",intDemo );                //与C语言的printf函数一样
   ```
   
 ## 时间与日期
@@ -48,8 +48,8 @@
 * Java中的`java.util`包中提供`Date`类来封装当前时间和日期.该类由两个构造函数:
 
   ```
-  Date();	//以当前时间初始化
-  Date(long millisxec);	//距1970年1月1日起的毫秒数
+  Date();    //以当前时间初始化
+  Date(long millisxec);    //距1970年1月1日起的毫秒数
   ```
 
 * 该类的成员方法:
@@ -105,10 +105,10 @@ public class DateDemo {
 #### 创建Calendar对象
 
 ```
-Calendar dateDemo = Calendar.getInstance();		//默认当前时间
+Calendar dateDemo = Calendar.getInstance();        //默认当前时间
 dateDemo.set(int year, int month, int day );
 dateDemo.set(Calendar.DATE, 10);
-dateDemo.add(Calendar.DATE, 10);	//时间增加
+dateDemo.add(Calendar.DATE, 10);    //时间增加
 dateDemo.get(Calendar.YEAR);
 ```
 

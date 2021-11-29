@@ -114,28 +114,28 @@ char * String::_data() {
 
 ```c++
 class String {
-	public:
-		// 构造函数的声明。
-		String(const char* str=0);
-		String(const String& str_obj);
-		String& operator=(const String& str_obj);
-		~String();
-	private:
-		char *m_data;
+    public:
+        // 构造函数的声明。
+        String(const char* str=0);
+        String(const String& str_obj);
+        String& operator=(const String& str_obj);
+        ~String();
+    private:
+        char *m_data;
 };
 
 // 构造函数的实现。
 inline
 String::String(const char *str=0) 
 {
-	if(str) {
-		this->m_data = new char[strlen(str)+1];
-		strcpy(this->m_data, str);
-	}
-	else {
-		this->m_data =new char[1];
-		*(this->m_data) ='\0';
-	}
+    if(str) {
+        this->m_data = new char[strlen(str)+1];
+        strcpy(this->m_data, str);
+    }
+    else {
+        this->m_data =new char[1];
+        *(this->m_data) ='\0';
+    }
 }
 
 ```
@@ -144,17 +144,17 @@ String::String(const char *str=0)
 
 ```c++
 class Complex {
-	public:
-		// 构造函数的声明。
-		Complex(double, double);
-		Complex& operator+=(const Complex&); 
-		double real() const { return this->re; }
-		double imag() const { return this->im; }
-		
-	private:
-		double re, im;
-		
-		Complex& __doapl(const Complex&);
+    public:
+        // 构造函数的声明。
+        Complex(double, double);
+        Complex& operator+=(const Complex&); 
+        double real() const { return this->re; }
+        double imag() const { return this->im; }
+        
+    private:
+        double re, im;
+        
+        Complex& __doapl(const Complex&);
 }
 
 // 构造函数的初始化列表。
@@ -175,19 +175,19 @@ class String {
     public:
         String(const char* str=0);
         // 拷贝构造函数的声明。
-		String(const String& str_obj);
-		String& operator=(const String& str_obj);
-		~String();
-	private:
-		char *m_data;
+        String(const String& str_obj);
+        String& operator=(const String& str_obj);
+        ~String();
+    private:
+        char *m_data;
 };
 
 // 拷贝构造函数的实现。
 inline
 String::String(const String& str_obj)
 {
-	this->m_data = new char[strlen(str_obj.m_data)+1];
-	strcpy(this->m_data, str_obj.m_data);
+    this->m_data = new char[strlen(str_obj.m_data)+1];
+    strcpy(this->m_data, str_obj.m_data);
 }
 ```
 
@@ -195,28 +195,28 @@ String::String(const String& str_obj)
 
 ```c++
 class String {
-	public:
-		String(const char* str=0);
-		String(const String& str_obj);
-		// 拷贝复制函数的声明。
-		String& operator=(const String& str_obj);
-		~String();
-	private:
-		char *m_data;
+    public:
+        String(const char* str=0);
+        String(const String& str_obj);
+        // 拷贝复制函数的声明。
+        String& operator=(const String& str_obj);
+        ~String();
+    private:
+        char *m_data;
 };
 
 // 拷贝复制函数的实现。
 inline
 String& String::operator=(const String& str_obj) 
 {
-	if( this == &str_obj ) {
-		return *this;
-	}
-	
-	delete[] this->m_data;
-	this->m_data = new char[strlen(str_obj.m_data)+1];
-	strcpy(this->m_data, str_obj.m_data);
-	return *this;
+    if( this == &str_obj ) {
+        return *this;
+    }
+    
+    delete[] this->m_data;
+    this->m_data = new char[strlen(str_obj.m_data)+1];
+    strcpy(this->m_data, str_obj.m_data);
+    return *this;
 }
 
 ```
@@ -232,20 +232,20 @@ String& String::operator=(const String& str_obj)
 
 ```c++
 class String {
-	public:
-		String(const char* str=0);
-		String(const String& str_obj);
-		String& operator=(const String& str_obj);
-		// 析构函数的声明。
-		~String();
-	private:
-		char *m_data;
+    public:
+        String(const char* str=0);
+        String(const String& str_obj);
+        String& operator=(const String& str_obj);
+        // 析构函数的声明。
+        ~String();
+    private:
+        char *m_data;
 };
 
 // 析构函数的实现。
 inline
 String:~String(){
-	delete[] m_data;
+    delete[] m_data;
 }
 
 ```
@@ -255,21 +255,21 @@ String:~String(){
 
 除了以上的函数之外还有一些操作符重载。
 
-* 加法赋值运算符重载	
+* 加法赋值运算符重载    
 
 ```c++
 class Complex {
-	public:
-		Complex(double, double);
-		// 加法赋值运算符重载声明。
-		Complex& operator+=(const Complex&); 
-		double real() const { return this->re; }
-		double imag() const { return this->im; }
-		
-	private:
-		double re, im;
-		
-		Complex& __doapl(const Complex&);
+    public:
+        Complex(double, double);
+        // 加法赋值运算符重载声明。
+        Complex& operator+=(const Complex&); 
+        double real() const { return this->re; }
+        double imag() const { return this->im; }
+        
+    private:
+        double re, im;
+        
+        Complex& __doapl(const Complex&);
 }
 
 inline Conplex&
@@ -282,7 +282,7 @@ Complex::__doapl(const Complex&)
 inline Complex& 
 Complex::operator+=(const Conplex&)
 {
-	
+    
 }
 
 ```

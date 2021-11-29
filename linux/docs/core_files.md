@@ -25,4 +25,4 @@ echo "/var/tmp/corefiles/core-%h-%g-%u-%p-%e-%s-%t" > /proc/sys/kernel/core_patt
 使用kill关闭进程时，使用-s指定信号量来生成core文件，能生成core文件的信号量有SIGABRT、SIGBUS、SIGEMT、SIGFPE等
 
 
-	
+    

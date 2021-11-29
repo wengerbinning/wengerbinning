@@ -23,45 +23,45 @@
 #include "ubusmsg.h"
 #include "ubusd_acl.h"
 
-#define UBUSD_CLIENT_BACKLOG	32
-#define UBUS_OBJ_HASH_BITS	4
+#define UBUSD_CLIENT_BACKLOG    32
+#define UBUS_OBJ_HASH_BITS    4
 
 extern struct blob_buf b;
 
 struct ubus_msg_buf {
-	uint32_t refcount; /* ~0: uses external data buffer */
-	struct ubus_msghdr hdr;
-	struct blob_attr *data;
-	int fd;
-	int len;
+    uint32_t refcount; /* ~0: uses external data buffer */
+    struct ubus_msghdr hdr;
+    struct blob_attr *data;
+    int fd;
+    int len;
 };
 
 struct ubus_client {
-	struct ubus_id id;
-	struct uloop_fd sock;
+    struct ubus_id id;
+    struct uloop_fd sock;
 
-	uid_t uid;
-	gid_t gid;
-	char *user;
-	char *group;
+    uid_t uid;
+    gid_t gid;
+    char *user;
+    char *group;
 
-	struct list_head objects;
+    struct list_head objects;
 
-	struct ubus_msg_buf *tx_queue[UBUSD_CLIENT_BACKLOG];
-	unsigned int txq_cur, txq_tail, txq_ofs;
+    struct ubus_msg_buf *tx_queue[UBUSD_CLIENT_BACKLOG];
+    unsigned int txq_cur, txq_tail, txq_ofs;
 
-	struct ubus_msg_buf *pending_msg;
-	int pending_msg_offset;
-	int pending_msg_fd;
-	struct {
-		struct ubus_msghdr hdr;
-		struct blob_attr data;
-	} hdrbuf;
+    struct ubus_msg_buf *pending_msg;
+    int pending_msg_offset;
+    int pending_msg_fd;
+    struct {
+        struct ubus_msghdr hdr;
+        struct blob_attr data;
+    } hdrbuf;
 };
 
 struct ubus_path {
-	struct list_head list;
-	const char name[];
+    struct list_head list;
+    const char name[];
 };
 
 struct ubus_msg_buf *ubus_msg_new(void *data, int len, bool shared);
@@ -73,14 +73,14 @@ struct ubus_client *ubusd_proto_new_client(int fd, uloop_fd_handler cb);
 void ubusd_proto_receive_message(struct ubus_client *cl, struct ubus_msg_buf *ub);
 void ubusd_proto_free_client(struct ubus_client *cl);
 void ubus_proto_send_msg_from_blob(struct ubus_client *cl, struct ubus_msg_buf *ub,
-				   uint8_t type);
+                   uint8_t type);
 
 typedef struct ubus_msg_buf *(*event_fill_cb)(void *priv, const char *id);
 void ubusd_event_init(void);
 void ubusd_event_cleanup_object(struct ubus_object *obj);
 void ubusd_send_obj_event(struct ubus_object *obj, bool add);
 int ubusd_send_event(struct ubus_client *cl, const char *id,
-		     event_fill_cb fill_cb, void *cb_priv);
+             event_fill_cb fill_cb, void *cb_priv);
 
 void ubusd_acl_init(void);
 

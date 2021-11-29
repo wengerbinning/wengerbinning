@@ -15,8 +15,8 @@
 #define __UBUS_COMMON_H
 #include <syslog.h>
 
-#define UBUS_SIGNATURE_METHOD	(BLOBMSG_TYPE_LAST + 1)
-#define UBUS_SIGNATURE_END		(BLOBMSG_TYPE_LAST + 2)
+#define UBUS_SIGNATURE_METHOD    (BLOBMSG_TYPE_LAST + 1)
+#define UBUS_SIGNATURE_END        (BLOBMSG_TYPE_LAST + 2)
 
 #define ubus_log(LOG_LEVEL, fmt, ...) do { syslog( LOG_LEVEL, "%s: " fmt, __func__, ##__VA_ARGS__ ); } while ( 0 );
 

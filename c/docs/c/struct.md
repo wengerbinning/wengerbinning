@@ -4,9 +4,9 @@ struct是一种自定义的数据类型，在使用前需要有明确的声明�
 
 ```c
 struct Account {
-	unsigned long id;
-	
-	
+    unsigned long id;
+    
+    
 }
 
 ```

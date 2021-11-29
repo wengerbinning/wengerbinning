@@ -67,7 +67,7 @@ make CC=gcc CFLAGS="-I/usr/include -I/include"
     # This is top makefile.
     MAKEFLAGS:=-rR
     all: 
-    	cd sub module && $(MAKE)	
+        cd sub module && $(MAKE)    
     ````
     
     在调用子模块时，会自动使用-w参数。
@@ -75,7 +75,7 @@ make CC=gcc CFLAGS="-I/usr/include -I/include"
     ```Makefile
     # This is sub module.
     all:
-    	@echo $(MAKEFILE)
+        @echo $(MAKEFILE)
     ```
 
 * 模式变量
@@ -118,8 +118,8 @@ make CC=gcc CFLAGS="-I/usr/include -I/include"
 ```Makefile
 # 根据event.o、message.o 、log.o来构建logger文件。
 logger：event.o message.o log.o
-	gcc -o logger event.o message.o log.o
-	echo "logger has built."
+    gcc -o logger event.o message.o log.o
+    echo "logger has built."
 ```
 
 
