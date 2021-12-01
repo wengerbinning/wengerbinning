@@ -1,8 +1,8 @@
 all: helloworld
-	-echo "BUild all"
+	-echo "Build all"
 
-helloword: helloworld.o
-	$(CC) -o helloworld helloworld
+helloworld: helloworld.o
+	$(CC) -o helloworld helloworld.o
 clean:
 	-rm *.o
-	-echo "Clean is over!"
+	echo "Clean is over!"
