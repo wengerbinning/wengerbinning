@@ -1,0 +1,6 @@
+信号(signal)就是告知某个进程发生了某个事件的同志，有时也称为软件中断(software interrupt)，信号通常是异步发生的。
+
+每一个信号通常有一个关联的处置(disposition)，也称行为(action)，我们通过sigaction来指定一个信号的处置。
+
+我们实现一个函数在特定信号发生时被调用，这个函数称为信号处理函数(signal handle)，这个处理的行为称为捕获(catching)信号。
+有两个信号不能被捕获：`SIGKILL`与`SIGSTOP`，该函数的原型是`void handler(int signo);`。
