@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include <sys/socket.h>
@@ -13,22 +14,21 @@ int main(int argc, const char *argv[]) {
     struct sockaddr_in listen_sockaddr, conn_sockaddr;
     socklen_t conn_addr_len;
     pid_t pid;
-    char buffer[BUFFERSIZE];
 
     listen_sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(listen_sockfd < 0) {
-        printf("[ERROR](error code: %d) create socket is error!\n", listen_sockfd);
+        printf("[ERROR] Create socket is error!\n");
         return -1;
     }
 
     bzero(&listen_sockaddr, sizeof(listen_sockaddr));
     listen_sockaddr.sin_family = AF_INET;
     inet_pton(AF_INET, argv[1], &listen_sockaddr.sin_addr);
-    listen_sockaddr.sin_port = htons(9001);
+    listen_sockaddr.sin_port = htons(9000);
 
     ret = bind(listen_sockfd, (struct sockaddr *)&listen_sockaddr, sizeof(listen_sockaddr));
     if(ret < 0) {
-        printf("[ERROR](error code: %d) bind socket to socket address is failed.\n");
+        printf("[ERROR] Bind socket to socket address is failed.\n");
         return -1;
     }
 
@@ -47,13 +47,25 @@ int main(int argc, const char *argv[]) {
         }
         pid = fork();
         if(pid == 0) {
-            close(listen_sockfd);
-            printf("[DEBUG] this sub process's pid is %d\n", getpid());
-            read(conn_sockfd, buffer, sizeof(buffer)-1);
-            printf("%s\r\n",buffer);
-            exit(0);
-        }
+            char *buffer= malloc(BUFFERSIZE);
+            int err,sockfd = conn_sockfd;
+            struct sockaddr_in sockaddr = conn_sockaddr;
+            bzero(buffer, BUFFERSIZE);
+            err = read(sockfd,buffer, sizeof(buffer));
+            if(err < 0) {
+                printf("[INFO] client was lost!\n");
+                free(buffer);
+                close(sockfd);
+                exit(0);
+            }
 
+            printf("from %s:%d message: %s\n",
+                   inet_ntoa(sockaddr.sin_addr),
+                   ntohs(sockaddr.sin_port),
+                   buffer
+                   );
+            write(sockfd, buffer, sizeof(buffer));
+        }
     }
 
     return 0;

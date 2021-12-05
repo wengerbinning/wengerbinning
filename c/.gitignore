@@ -1,9 +1,13 @@
+# some lcoal files.
+commit.message
+
+# Some compile files.
 **/*.o
 **/*.a
 **/*.so
 
-**/bin/**
-**/lib/**
+# Some folder.
+**/bin/
 
 
 
