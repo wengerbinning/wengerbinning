@@ -8,6 +8,7 @@ commit.message
 
 # Some folder.
 **/bin/
+**/.idea/
 
 
 
