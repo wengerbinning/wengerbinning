@@ -46,8 +46,10 @@ int main(int argc, const char * argv[]) {
            getpid(),
            inet_ntoa(listen_sockaddr.sin_addr),
            ntohs(listen_sockaddr.sin_port));
+
     // TODO deal when client connection.
     while(1) {
+        int ext = 1;
         memset(&conn_sockaddr, 0, sizeof(conn_sockaddr));
         conn_addr_len = sizeof(conn_sockaddr);
 
@@ -65,8 +67,8 @@ int main(int argc, const char * argv[]) {
 
         while(1) {
             bzero(buffer, sizeof(buffer));
-            ret = read(conn_sockfd, buffer, sizeof(buffer));
-            if (ret < 0) {
+            size = read(conn_sockfd, buffer, sizeof(buffer));
+            if (size < 0) {
                 printf("[INFO] Client connection is lost!\n");
                 close(conn_sockfd);
                 break;
@@ -77,10 +79,19 @@ int main(int argc, const char * argv[]) {
                    ntohs(conn_sockaddr.sin_port),
                    buffer
             );
+            if(0 == strncmp(buffer,"server quit",sizeof("server quit")-1)) {
+                ext = 0;
+            }
 
             write(conn_sockfd, buffer, sizeof(buffer));
         }
+
+        // NOTE Check server need or not exit.
+        if( ext != 1 ) {
+            break;
+        }
     }
 
+    printf("[DEBUG] Server exit.\n");
     return 0;
 }
