@@ -67,7 +67,7 @@ int main(int argc, const char *argv[]) {
         
         // NOTE Child process.
         if(pid == 0) {
-            close(listen_sockfd);
+            close(listen_sockfd);    
             bzero(buffer, BUFFERSIZE);
             printf("[INFO] fork %d, Accept a client connection: %s:%d\n",
                    getpid(),
