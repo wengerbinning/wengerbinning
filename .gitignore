@@ -7,22 +7,18 @@
 **/*.so
 **/*.dll
 
-# Some project files that do not need to be tracked.
-.commit.message
-
 # Some generic matching directorys that do not need be tracked.
-**/.idea/**
-**/.vscode/**
-**/.obsidian/**
+**/.idea/
+**/.vscode/
 
 #
-**/bin/**
-**/lib/**
+**/bin/
+**/lib/
 **/build/**
-**/.cache/**
-**/destdir/**
+**/.cache/
+**/destdir/
 
-**/cache/**
-**/build/**
-**/imagedir/**
-**/cmake-build-debug/**
+**/cache/
+**/build/
+**/imagedir/
+**/cmake-build-debug/
