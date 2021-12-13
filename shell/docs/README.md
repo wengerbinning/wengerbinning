@@ -17,11 +17,7 @@ Linux发行版本默认shell。zsh是我喜欢的shell。
   ```
 
 ## 数据对象
--------------------------------------------------------------------------------
-
-shell中数据对象只能存储字符类型的数据，且赋值符号左右不留空格。
-
-* 数据对象示例：
+---in markdown preview to match GitHub markdown rendering in style and content
 
   ```shell
   # 变量的定义格式。
@@ -751,3 +747,29 @@ ANSI/VT100转义序列
 
 * 88/256颜色控制字符
 
+
+
+
+* `echo`是shell内置的命令，用于显示内容。
+
+echo具有以下参数
+
+  `-e`打开转移序列的开关    
+
+
+
+
+
+
+
+---------
+使用exec可以用来打开一个文件并指定一个文件描述符
+
+```shell
+# 使用文件描述符3指定到log.txt文件。
+exec 3>>log.txt
+
+echo comment >&3
+
+
+``` 
