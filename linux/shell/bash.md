@@ -1,3 +1,10 @@
+Bourne Again Shell
+
+内置命令     
+
+
+
+
 # SHELL
 
 Shell是Linux的终端控制程序，是处理计算机与人之间交互的程序；在众多的shell中，bash是大多

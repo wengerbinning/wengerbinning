@@ -37,7 +37,6 @@ int main(int argc, const char *argv[]) {
         printf("[ERROR] Bind socket to socket address is failed.\n");
         return -1;
     }
-
     // NOTE listen socket.
     ret = listen(listen_sockfd, 5);
     if(ret == -1) {

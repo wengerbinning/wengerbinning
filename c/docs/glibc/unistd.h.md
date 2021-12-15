@@ -1,4 +1,6 @@
-unistd.h
+# unistd.h
+
+unistd中实现了一些关于进程相关的接口。
 
 
 
@@ -39,7 +41,7 @@ exec系列函数实现来使用程序文件替换当今进程的任务的功能�
   指针。进程的环境变量会保留。
   
 ```c
-extern int execv (const char *__path, char *const __argv[]) __THROW __nonnull ((1, 2));
+extern int execv (const char *__path, char *const __argv[]);
 ```
 
 * `int execve(const char *path, char *const argv[], char *const envp[]);`
@@ -47,7 +49,7 @@ extern int execv (const char *__path, char *const __argv[]) __THROW __nonnull ((
   使用可执行程序文件替换当前进程的程序，与execv的区别是增加了一个环境变量的参数。
 
 ```c
-extern int execve (const char *__path, char *const __argv[], char *const __envp[]) __THROW __nonnull ((1, 2));
+extern int execve (const char *__path, char *const __argv[], char *const __envp[]);
 ```
 
 * `int execl (const char *path, const char *arg, ...);`

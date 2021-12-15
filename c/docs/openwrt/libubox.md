@@ -5,9 +5,9 @@ libubox主要提供一套基于事件驱动的机制，同时提供链表、键�
 
 ## uloop
 
-其中uloop是一个模块，用于提供三个功能：定时器事件处理、文件描述符事件处理、进程事件处理。
+其中uloop是一个模块，用于提供三个功能：定时器事件处理、进程事件处理、文件描述符事件处理。uloop_run会轮询处理这三类任务。
 
-* 定时器事件处理
+**定时器事件处理**
 
 ```c
 struct uloop_timeout {
@@ -27,25 +27,7 @@ int uloop_timeout_remaining(struct uloop_timeout * timeout);
 int uloop_timeout_cancel(struct uloop_timeout * timeout);
 ```
 
-* 文件描述符事件处理
-
-```c
-struct uloop_fd {
-    uloop_fd_handle cb; /** 文件描述符处理函数 */
-    int fd;             /** 文件描述符 */
-    bool eod;           /** EOF */
-    bool error;         /** error */
-    bool registered;    /** 是否已添加到epoll的监控队列 */
-    uint8_t flags;      /** 一些权限标志 */
-};
-
-// 注册一个文件描述符到事件处理循环,最多支持10个文件描述符。
-int uloop_fd_add(struct uloop_fd *sock, unigned int flags);
-// 从事件处理循环中删除指定文件描述符。
-int uloop_fd_delete(struct uloop_fd *sock);
-```
-
-* 进程事件处理
+**进程事件处理**
 
 ```c
 typedef void (*uloop_process_handler)(struct uloop_process *c, int ret);
@@ -62,6 +44,30 @@ int uloop_process_add(struct uloop_process * p);
 // 从进程处理循环中销毁该进程事件
 int uloop_process_delete(struct uloop_process * p);
 ```
+
+**文件描述符事件处理**
+
+文件描述符事件处理是基于一个uloop_fd的抽象数据类型来实现的，具体内容如下：
+
+```c
+struct uloop_fd {
+    uloop_fd_handle cb; /** 文件描述符处理函数 */
+    int fd;             /** 文件描述符 */
+    bool eod;           /** EOF */
+    bool error;         /** error */
+    bool registered;    /** 是否已添加到epoll的监控队列 */
+    uint8_t flags;      /** 一些权限标志 */
+};
+```
+
+* `int uloop_fd_add(struct uloop_fd *sock, unigned int flags);`
+
+注册一个文件描述符到事件处理循环,最多支持10个文件描述符。
+
+* `int uloop_fd_delete(struct uloop_fd *sock);`
+
+删除一个文件描述符从事件处理循环中。
+
 
 ## usock
 

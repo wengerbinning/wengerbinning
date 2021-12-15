@@ -101,7 +101,9 @@ git restore <file path>
 git restore --staged <file path>
 ````
 
-* 查看暂存区与工作区中的状态，通过`git status`查看暂存区与工作区中的状态。
+**status**
+
+statusvim用于查看暂存区与工作区中的状态。
 
 ```shell
 # 显示工作区状态。
@@ -112,8 +114,6 @@ git status -s
 git status -u
 # 显示忽略的文件。
 git status --ignored
-# 以图形的方式查看日志。
-git log --graph
 ```
 
 * 展示提交的信息，通过`git show`来展示当前提交或指定提交的信息及内容。
