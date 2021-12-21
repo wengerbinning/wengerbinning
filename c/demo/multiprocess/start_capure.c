@@ -14,7 +14,7 @@ int main(int argc, const char *argv[]) {
     int pipefd[2];
     pid_t pid;
     char buffer[1024];
-    int len;
+    int exit_status;
 
     printf("[DEBUG](%d) host task is runing ...\n", getpid());
 
@@ -38,21 +38,21 @@ int main(int argc, const char *argv[]) {
         dup2(pipefd[IN],1);
         close(pipefd[IN]);
         close(0); close(2);
-        write(pipefd[IN], "hello, I am Clark!", 20);
+        // write(pipefd[IN], "hello, I am Clark!", 20);
         execl("/usr/sbin/tcpdump", "/usr/sbin/tcpdump","--immediate-mode", "-w", "-", NULL);
     } else {
         close(pipefd[IN]);
         printf("[DEBUG](%d) vfork sub task is %d.\n", getpid(), pid);
-    
-        while (read(pipefd[OUT],buffer,sizeof(buffer)) > 0 )
-        {
-            printf("%s--->",buffer);
+        // fstat(pipefd[OUT], fd_status);
+        // printf("%s\n",fd_status->ss_flags);
+        // printf("[DEBUG](%d) pipe is close!\n",getpid());    
+        while( waitpid(pid,&exit_status,WNOHANG) != pid ) {
+           if( 0 <= read(pipefd[OUT], buffer, sizeof(buffer)) ) {
+               write(STDOUT_FILENO, buffer, sizeof(buffer));
+           }
         }
 
-        printf("[DEBUG](%d) len is %d and pipe is close!\n",getpid(), len);    
-
-        waitpid(pid, NULL, 0);
-        printf("[DEBUG](%d) child process %d had exit.\n", getpid(), pid);
+        printf("[DEBUG](%d) child process %d has exit and exit status is %d\n", getpid(), pid, exit_status);
     }
     return 0;
 }
