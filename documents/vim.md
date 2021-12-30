@@ -2,17 +2,14 @@
 
 [//]: # (__author__ = "Clark Aaron")
 
-vim是vi的增强版本。在vi出现之前，ed是标准UNIX系统编辑器，是一个面向行的编辑器，所以在编辑文件时很难看到文本的上下文；之后出现了ex,相较于ed,ex提供了编辑-显示功能，可以显示一屏文本而不仅是一行文本。在使用ex时，可通过输入vi(Visual mode)启动该编辑-显示功能；后来，出现了一个程序，在打开ex编辑时运行该编辑-显示功能而不必在输入vi打开，这款程序便是vi。Linux提供vi的多个版本，或者说多个克隆，这些版本中有elvis、nvi、vile等，都对vi做了扩展。在学习过程中，可以使用vimtutor来查看vim的使用说明。这里我们以vim作为学习的基础。在使用vim时，需要将使用的终端类型传递给vim,对于很多系统，指定终端类型是自动设定的。如果vim在启动后出现扭曲变形，则可能是终端类型没有设置正确。vim有两种模式：命令模式（普通模式）与输入模式（编辑模式），在命令模式时，用户可以使用各种命令来操作文件，通过一些设定的按键，可以从命令模式转化为输入模式，同时通过`Escape`按键可以退出编辑模式返回命令模式。在命令模式之中可以在细分出一类行命令模式，该模式可以用该设置参数，行跳转、内容搜索等。
+vim是vi的增强版本。在vi出现之前，ed是标准UNIX系统编辑器，是一个面向行的编辑器，所以在编辑文件时很难看到文本的上下文；之后出现了ex,
+相较于ed,ex提供了编辑-显示功能，可以显示一屏文本而不仅是一行文本。在使用ex时，可通过输入vi(Visual mode)启动该编辑-显示功能；
+后来，出现了一个程序，在打开ex编辑时运行该编辑-显示功能而不必在输入vi打开，这款程序便是vi。Linux提供vi的多个版本，或者说多个克隆，
+这些版本中有elvis、nvi、vile等，都对vi做了扩展。在学习过程中，可以使用vimtutor来查看vim的使用说明。这里我们以vim作为学习的基础。
+在使用vim时，需要将使用的终端类型传递给vim,对于很多系统，指定终端类型是自动设定的。如果vim在启动后出现扭曲变形，则可能是终端类型没有设置正确。
+vim有两种模式：命令模式（普通模式）与输入模式（编辑模式），在命令模式时，用户可以使用各种命令来操作文件，通过一些设定的按键，可以从命令模式转化为输入模式，
+同时通过`Escape`按键可以退出编辑模式返回命令模式。在命令模式之中可以在细分出一类行命令模式，该模式可以用该设置参数，行跳转、内容搜索等。
 
-## 资源链接
-
-> [官方网站](https://www.vim.org/) ☛ <https://www.vim.org/>
-
-1. [官方文档](https://www.vim.org/docs.php) ☛ <https://www.vim.org/docs.php>
-   * [帮助文档](https://vimhelp.org/) ☛ <https://vimhelp.org/>
-   * [书籍资料](https://iccf-holland.org/vim_books.html) ☛ <https://iccf-holland.org/vim_books.html>
-
-2. [下载资源](https://www.vim.org/download.php) ☛ <https://www.vim.org/download.php>
 
 ## vim 基础操作键
 
@@ -109,3 +106,14 @@ vim 有四种模式:`NORMAL` mode(普通模式)、`Visual` mode(视觉模式)、
 * `github.com/w0ng/vim-hybrid`：vim-hybrid配色。
 * `github.com/altercation/vim-colors-solarized`：solarozed配色。
 * `github.com/morhetz/gruvbox`：gruvbox配色。
+
+
+## 资源链接
+
+> [官方网站](https://www.vim.org/) ☛ <https://www.vim.org/>
+
+1. [官方文档](https://www.vim.org/docs.php) ☛ <https://www.vim.org/docs.php>
+   * [帮助文档](https://vimhelp.org/) ☛ <https://vimhelp.org/>
+   * [书籍资料](https://iccf-holland.org/vim_books.html) ☛ <https://iccf-holland.org/vim_books.html>
+
+2. [下载资源](https://www.vim.org/download.php) ☛ <https://www.vim.org/download.php>
