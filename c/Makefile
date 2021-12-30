@@ -1,5 +1,8 @@
-all: helloworld.o
+all: helloworld
 	echo "This is make all."
+
+
+helloworld:helloworld.o
 	$(CC) -o helloworld -g helloworld.o
 
 helloworld.o: helloworld.c

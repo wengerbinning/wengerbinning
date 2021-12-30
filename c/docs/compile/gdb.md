@@ -13,17 +13,31 @@
 根据未剥离符号表的程序文件以及产生的core文件进行gdb调试。gdb命令会根据命令树来确定命令，例如backtrace，输入ba，bt就可以调用，即使用命令唯一字符子集就可以识别。
 
 ```shell
-gdb <program file> <core file>
+gdb pragram core
 ```
 
+* 通过`list`来显示源码。
 
+```gdb
+// 显示源码。
+list
+```
 
+* 通过`break`来创建断点，使程序执行到这里暂停运行；可以使用行号、实际内存地址、函数名作为参数。
+
+```gdb
+break 16
+```
+
+* 通过`run`来使程序运行.
+
+```gdb
+```
 
 * 打印程序相关信息info，该命令可以答应变量，寄存器等信息。
 
 ```gdb
 info local 打印局部变量
-
 ```
 
 * 打印表达式的值print，
@@ -67,19 +81,6 @@ disassemble /m <function>
 * RIP: 保存当前执行指令的地址的寄存器。
 
 
-* 通过`list`来显示源码。
-
-```gdb
-list
-```
-
-* 通过`break`来创建断点，使程序执行到这里暂停运行；可以使用行号、实际内存地址、函数名作为参数。
-
-```gdb
-break 16
-```
-
-* 通过`run`来使程序运行，
 
 * 通过`continue`来使程序继续运行。
 

@@ -1,0 +1,12 @@
+Tex排版系统需要我们编辑一个`*.tex`文件，这个文件包含固定格式：
+
+```tex
+\documentclass{article}
+% TODO 在这里设置文件属性内容。
+
+\begin{document}
+
+% TODO 在这里编辑正文。
+
+\end{document}
+```
