@@ -18,3 +18,4 @@
 * `-Q <direction>, --direction=<direction>`指定数据方向。
 * `-w <file>`将报写入file文件中
 * `-U, --packet-buffered`
+

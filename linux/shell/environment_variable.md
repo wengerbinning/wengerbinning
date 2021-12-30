@@ -40,3 +40,11 @@ unset <variable_name>
 
 * `PATH`是shell用来搜索可执行文件的路径，通常为各个二进制文件的存放路径，多个路径通过`:`来区分。
 * `TERM`是
+
+
+
+
+**pkg-config**
+
+PKG_CONFIG_PATH
+PKG_CONFIG_LIBDIR
