@@ -176,6 +176,28 @@ git checkout -- <file>
 
 * 合并分支，通过`git merge`与`git rebase`实现分支合并。 
 
+git charry-pick 
+
+**`git log`**
+
+git-log用于显示提交的日志信息。其具体格式如下：
+
+```shell
+git log [<option>] [<revision range>] [[--] <path>...]
+```
+
+没有参数时，默认从近及远显示所有提交日志。
+
+* `--follow`
+* `--no-decorate, --decorate[=short|full|auto|no]`
+* `--decorate-refs=<pattern>, --decorate-refs-exclude=<pattern>`
+* `--source`
+* `--[no-]mailmap, --[no-]user-mailmap`
+* `--full-diff`
+* `--log-size`
+* `-L<start>,<end>:file, -L:<funcname>:<file>`
+* ``
+
 ## 远程仓库
 
 * 【功能】克隆远程仓库：
