@@ -2,7 +2,7 @@
 
 ## 音素
 
-音素（Phoneme）根据语音的自然属性划分出来的最小语音单位，音素可以分为辅音音素与元音音素两大类。音标（Phonetic Alphabet）是记录音素的符号，同样可分为辅音音标与元音音标两大类。IPA（International Phonetic Alphabet，国际音标）
+
 
 ---
 
