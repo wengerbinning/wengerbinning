@@ -46,5 +46,21 @@ unset <variable_name>
 
 **pkg-config**
 
-PKG_CONFIG_PATH
-PKG_CONFIG_LIBDIR
+PKG_CONFIG_PATH指定搜索路经，优先级在默认搜索之前。
+
+PKG_CONFIG_LIBDIR指定默认的搜索路经。
+
+PKG_CONFIG_SYSROOT_DIR 指定pkg-config的逻辑根目录。
+
+
+
+
+**GCC**
+
+
+
+
+
+**程序加载时**
+
+``
