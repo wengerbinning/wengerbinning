@@ -2,24 +2,25 @@
 
 # for index in $(seq 40 50); do echo -e "\033[${index}m $index demo \033[0m"; done
 #
-# \033[0m   : unset all attribute.
-# \033[1m   : set bold attribute.
-# \033[3m   : set italic attribute.
-# \033[4m   : set underline attribute.
-# \033[5m   : set blink attribute. 
-# \033[7m   : set inverse attribute.
-# \033[8m   : set hide  attribute.
-# \033[9m   : set delline attribute.
+# \033[0m   : unset all attribute. 取消所有属性
+# \033[1m   : set bold attribute. 加粗
+# \033[2m   : set 瘦体。
+# \033[3m   : set italic attribute. 斜体 
+# \033[4m   : set underline attribute. 下划线
+# \033[5m   : set blink attribute.  闪烁
+# \033[7m   : set inverse attribute. 反转
+# \033[8m   : set hide  attribute. 隐藏属性
+# \033[9m   : set delline attribute. 删除线
 # \033[30m  : set hide attribute. 
 
 # set font color.
-# \033[31m  :  
-# \033[32m  :
-# \033[33m  :
-# \033[34m  :
-# \033[35m  :
-# \033[36m  :
-# \033[37m  :
+# \033[31m  : 红色
+# \033[32m  : 绿色
+# \033[33m  : 橙色
+# \033[34m  : 蓝色
+# \033[35m  : 紫色
+# \033[36m  : 墨绿
+# \033[37m  : 
 
 # set backgroud color.
 # \033[41m  :
@@ -52,13 +53,4 @@
 
 
 
-#=====================================================================================================================#
-function usage() {
-
-}
-
-#=====================================================================================================================#
-function params() {
-
-}
 
