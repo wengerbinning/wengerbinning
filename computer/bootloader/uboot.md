@@ -13,4 +13,6 @@ U-boot项目说明，在2010.06之后的项目有
 u-boot有两种工作模式：启动加载与下载。
 
 
+大多数bootloader都分为stage1与stage2，u-boot也不例外，依赖于CPU体系的部分在stage1中并可用汇编来实现，stage2通常为C语言，基本与CPU无关的代码。
+
 

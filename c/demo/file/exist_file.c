@@ -10,9 +10,10 @@ int main(int argc, char *argv[]) {
         printf("[ERROR] open /var/run/demo/pid is error!\n");
         return -1;
     }
+    fwrite()
 
     write(fd, "1234", sizeof("1234"));
     close(fd);
-
+    fread()
     return 0;
 }

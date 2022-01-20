@@ -7,6 +7,13 @@
 ## 硬件系统
 
 ### CPU
+
+中央处理器(CPU,Central Processing Unit)是计算机运算与控制的核心，是信息处理，程序运行的最终执行单元；CPU包括控制器与运算器，CPU的性能指标有主频（时钟频率）、CPU位数、CPU缓存指令集、CPU核数、IPC
+
+* 主频（时钟周期）直接决定CPU性能，可以通过超频技术来提高CPU的主频。
+
+* CPU位数是指一次性计算的浮点位数
+
 ### Memory
 ### External Storage
 ### Mainboard

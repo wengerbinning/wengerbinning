@@ -23,10 +23,13 @@ Git是一个免费开源分布式版本控制系统（DVCS，Distributed Version
 
 * 基础功能配置：主要是一些基础的配置。
 
-  ```shell
-   # 支持中文显示。
-   git config --global core.quotepath off
-   ```
+```shell
+# 支持中文显示。
+git config --global core.quotepath off
+
+#配置git的编辑器为vim。
+git config --global core.editor vim
+```
 
 可以使用`git help config`来查看git config的详细使用方法。这些配置信息都是保存在配置文件中的。相关的配置文件有：
 * `~/.gitconfig`:该文件保存全局的配置信息，在设置信息使用`--global`参数可以将配置保存在该文件中。
@@ -198,6 +201,33 @@ git log [<option>] [<revision range>] [[--] <path>...]
 * `-L<start>,<end>:file, -L:<funcname>:<file>`
 * ``
 
+## 仓库文件
+
+* 【功能】删除仓库文件：
+
+  ```shell
+  # 将文件从仓库中删除。
+  git rm <file>
+  ```
+
+* 【功能】搜索仓库文件：
+
+  ```shell
+  git grep
+  ```
+
+* 【功能】显示仓库文件：
+  
+  ```shell
+  git ls-tree
+  ```
+
+* 【功能】移动仓库文件：
+
+  ```shell
+  git mv
+  ```
+
 ## 远程仓库
 
 * 【功能】克隆远程仓库：
@@ -208,7 +238,7 @@ git log [<option>] [<revision range>] [[--] <path>...]
   # 克隆远程仓库到指定目录。
   git clone <repository> <dicestory>
   # 克隆指定版本的的仓库。
-  git clone <repository> --branch <branch_tag> --single-branch
+  git clone <repository> --branch <branch tag> --single-branch
   ```
 
 * 【功能】拉取远程仓库：
@@ -249,44 +279,30 @@ git log [<option>] [<revision range>] [[--] <path>...]
 # 设置本地仓库的上游分支develop
 git pull --set-upstream origin develop
 git pull -u origin test:
+
+# 设置当前分支的上游分支。
+git branch --set-upstream-to=<remote branch> <lcoal branch>
 ```
 
-## 仓库文件
+* 取消上游分支
 
-* 【功能】删除仓库文件：
+```shell
+# 取消当前分支的上游分支。
+git branch --unset-upstrean
+```
 
-  ```shell
-  # 将文件从仓库中删除。
-  git rm <file>
-  ```
 
-* 【功能】搜索仓库文件：
-
-  ```shell
-  git grep
-  ```
-
-* 【功能】显示仓库文件：
-  
-  ```shell
-  git ls-tree
-  ```
-
-* 【功能】移动仓库文件：
-
-  ```shell
-  git mv
-  ```
 
 ## 分支管理
 
 * 【功能】新建分支：
 
   ```shell
-  # 新建一个分支。
-  git branch <branch name>
   # 查看分支列表即当前所在分支。
   git branch
+  # 新建一个分支。
+  git branch <branch name>
+  
   # 查看当前分支的最近的提交。
   git branch -v
   ```
@@ -324,6 +340,14 @@ git pull -u origin test:
   git push origin --delete <remote branch>
   ```
 
+**git merge**
+
+```shell
+# 合并分支
+git merge <branch name>
+# 放弃合并
+git merge --abort
+```
 ### 标签管理
 
 标签有两种，一种简单标签，一种带注释的标签。
@@ -368,6 +392,9 @@ git pull -u origin test:
 * .gitignore
 * .gitattuributes
 * .mailmap
+
+
+
 
 ## 原理分析
 
