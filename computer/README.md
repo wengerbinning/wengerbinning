@@ -170,6 +170,14 @@ gcc -m32 <file.c>
 gcc -m64 <file.c>
 ```
 
+
+
+
+## 接口标准
+
+总线PCI
+
+接口SCSI、IDE
 ---
 
 ## 资源链接

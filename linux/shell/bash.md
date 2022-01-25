@@ -1,10 +1,3 @@
-Bourne Again Shell
-
-内置命令     
-
-
-
-
 # SHELL
 
 Shell是Linux的终端控制程序，是处理计算机与人之间交互的程序；在众多的shell中，bash是大多
@@ -469,9 +462,10 @@ done
 <command> < <filename>
 <command> < <filename> 2<&1        # 将stderr与stdout合并输入
 "dwdwd << <tag> <content> <tag>"                      # 将tag之间的内容作为输入
-# 将文件描述符为n重定向到file,将stderr重定向到file
-<command> <number> > <filename>     # 覆盖的方式
-<command> <number> >> <filename>    # 追加的方式
+# 将文件描述符为n重定向到file,将stderr重定向到file，缺省n是默认为标准输出。
+<command> <number> n> <filename>     # 覆盖的方式
+<command> <number> n>> <filename>    # 追加的方式
+
 ```
 
 如果执行命令后不想输出结果,则可以将输出重定向到`/dev/null`中,`/dev/null`中的内容都会被丢弃.

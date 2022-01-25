@@ -1,24 +1,3 @@
-# Some generic matching files that do not need be tracked.
-**/*.log
-**/*.o
-**/*.exe
-**/*.a
-**/*.lib
-**/*.so
-**/*.dll
-
 # Some generic matching directorys that do not need be tracked.
-**/.idea/
-**/.vscode/
-
-#
-**/bin/
-**/lib/
-**/build/**
-**/.cache/
-**/destdir/
-
-**/cache/
-**/build/
-**/imagedir/
-**/cmake-build-debug/
+**/.idea
+**/.vscode

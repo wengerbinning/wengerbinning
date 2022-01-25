@@ -57,6 +57,22 @@ git init --base
 
 > Note: 仓库的路径是可以是绝对路径，也可以是相对路径。如果路径不存在，git会递归的创建并初始化。
 
+
+* `git status`显示当前工作区与暂存区的状态，缺省参数时忽略gitignore中文件的状态。
+
+git-status会对比暂存区与仓库，工作区与暂存区的的文件，如果发生变化，则显示出来。
+
+```shell
+# 显示工作区状态。
+git status
+# 以简洁的格式显示状态。
+git status -s
+#　显示未跟踪的文件。
+git status -u
+# 显示忽略的文件。
+git status --ignored
+```
+
 * `git add`来实现将文件添加到暂存区，暂存区的文件会被跟踪。
 
 暂存区是位于工作区与仓库之前的桥梁，可以与仓库与工作区的文件进行对比；文件被添加到仓库中之前，必须被添加到暂存区；而且如果已添加到暂存区的文件
@@ -75,9 +91,7 @@ git add -f <file path>
 
 > Note: file path可以是一个工作区中的文件路径、目录路径以及模糊匹配(*.c表示所有的c文件)三种类型。
 
-`.gitignore`文件是一个配置文件，指定哪些文件不需要添加到仓库中。可以存在多个文件。
-
-* 对暂存区中的变更做一次提交。使用`git commit`来对暂存区中的变更做一次提交。
+* `git commit`来对暂存区中的变更做一次提交。 对暂存区中的变更做一次提交。
 
 提交是git维护对象，每一个提交有一个commit id来标识，一般提交必须有一个提交描述，没有描述会无法提交。通过`git commit`来进行提交。
 
@@ -93,7 +107,7 @@ git commit -am <commit message>
 git commit -F <message file path>
 ```
 
-* 恢复文件的变更。通过`git restore`来恢复文件。
+* `git restore`恢复文件的变更。
 
 恢复文件的变更需要文件已添加到仓库或暂存区才能恢复。
 
@@ -104,22 +118,9 @@ git restore <file path>
 git restore --staged <file path>
 ````
 
-**status**
 
-statusvim用于查看暂存区与工作区中的状态。
 
-```shell
-# 显示工作区状态。
-git status
-# 以简洁的格式显示状态。
-git status -s
-#　显示未跟踪的文件。
-git status -u
-# 显示忽略的文件。
-git status --ignored
-```
-
-* 展示提交的信息，通过`git show`来展示当前提交或指定提交的信息及内容。
+* `git show`来展示当前提交或指定提交的信息及内容。
 
 ```shell
 git show
@@ -127,18 +128,17 @@ git show
 git show <file>
 ```
 
-* 差异对比，通过`git diff`查看文件的差异
+* `git diff`查看文件的差异，缺省参数会当前工作区与暂存区的差异。
 
 ```shell
 git diff
 ```
 
-* 撤销提交，`git reset`实现撤销提交
+* `git reset`实现撤销提交
 
 * `git revert`实现增量撤销提交
 
-
-* 设定标签：为每一次提交设定一个标签。
+* `git tag`设定标签：为每一次提交设定一个标签。
 
 ```shell
 # 为当前分支的HEAD设定一个标签。
@@ -153,43 +153,8 @@ git tag -d <label>
 
 > Note：标签相当于commit id的一个别名，是为了以后便于版本的回溯。
 
-* 【功能】创建分支：为当前默认主分支master创建一个分支。
 
-```shell
-# 为当前分支创建一个分支。
-git branch <branch name>
-# 切换分支。
-git switch <branch>
-# 显示该仓库的所有分支。
-git branch
-# 删除一个分支。在删除前会检查当前分支是否被合并如果未合并，则删除失败。
-git branch -d <branch>
-# 直接删除分支。
-git branch -D <branch>
-```
-
-> Note：创建分支其实是创建一个分支地址指向当前分支的HEAD，并没有复制文件。
-
-* 清理以及切换分支，`git checkout`
-
-```shell
-# 撤销文件在工作区的修改，是工作区文件与暂存区文件保持一致。
-git checkout -- <file>
-```
-
-* 合并分支，通过`git merge`与`git rebase`实现分支合并。 
-
-git charry-pick 
-
-**`git log`**
-
-git-log用于显示提交的日志信息。其具体格式如下：
-
-```shell
-git log [<option>] [<revision range>] [[--] <path>...]
-```
-
-没有参数时，默认从近及远显示所有提交日志。
+* `git log`显示关于仓库的日志信息。没有参数时，默认从近及远显示所有提交日志。
 
 * `--follow`
 * `--no-decorate, --decorate[=short|full|auto|no]`
@@ -199,7 +164,8 @@ git log [<option>] [<revision range>] [[--] <path>...]
 * `--full-diff`
 * `--log-size`
 * `-L<start>,<end>:file, -L:<funcname>:<file>`
-* ``
+
+* `.gitignore`文件是一个配置文件，指定哪些文件不需要添加到仓库中。可以存在多个文件。
 
 ## 仓库文件
 
