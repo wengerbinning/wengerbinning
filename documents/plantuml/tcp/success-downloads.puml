@@ -1,0 +1,23 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+
+participant Client as B
+participant Server as A
+
+B -> A: SYN
+A -> B: ACK & SYN
+B -> A: ACK
+
+note right of B: TCP建立完成，\n开始传输数据
+
+A O<-->O B: Transfer Data
+
+note right of B: 数据传输完成，\n服务器断开TCP
+
+A -> B : FIN
+B -> A : ACK
+A -> B : FIN
+B -> A : ACK
+
+@enduml
