@@ -25,3 +25,7 @@ DOCUMENTS
 * 公共对象请求代理体系结构(CORBA,Common Object Request Broker Architecture)是OMG组织制定的一种标准的面向对象应用程序体系规范。
 
 * Web服务定义语言(WSDL, Web Services Definition Language)是一个建议性标准。
+
+
+`.vscode/`是Visual Studio Code工具针对该项目做的一些自定设置目录，请根据实际使用场景来修改该文件。
+

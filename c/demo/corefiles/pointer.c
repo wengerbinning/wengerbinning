@@ -8,4 +8,5 @@ int main(int argc, const char *argv[]) {
     *uchar_ptr = 'a';
     printf("unsigned char uchar_ptr: [%x](%x)\n", &uchar_ptr, uchar_ptr);
     return 0;
+    // d
 }
