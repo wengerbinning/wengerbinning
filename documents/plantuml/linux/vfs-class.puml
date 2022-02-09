@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class file {
+}
+
+class dentry {
+}
+
+class inode {
+}
+
+class super_block {
+}
+
+
+@enduml

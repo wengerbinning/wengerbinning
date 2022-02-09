@@ -134,3 +134,22 @@ This style guide evolves over time as additional conventions are identified and 
 
 * Function Annotations: PEP 484 
 * Variable Annotations: PEP 526
+
+虚拟环境
+========
+
+因系统中存在多个python版本，可以使用虚拟环境，在此之前需要安装python-virtualenv。
+
+```shell
+# 在当前工程目录下创建默认python版本的虚拟环境。
+virtualenv --python /usr/bin/python .venv
+# 在当前工程目录下创建python2版本的虚拟环境。
+virtualenv --python /usr/bin/python2 .venv2
+
+# 启用python虚拟环境
+source .venv/bin/activate
+```
+
+`
+
+```

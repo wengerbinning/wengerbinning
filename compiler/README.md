@@ -106,3 +106,56 @@ gcc -DLOG_LEVEL=1
 * `-Wcomment`在注释中出现`/*`字符，`/*`作为注释的开始标识，不能在出现在注释中。
 * `-Wformat`某些输入输出语句所包含的格式说明与参数不匹配。
 * `-Wall`检查以上所有警告。
+
+
+
+
+自动构建工具
+===========
+
+autoconf、cmake工具是用来检测并生成配置文件的工具，
+
+
+autoconf
+-------
+autoscan
+autoupdate
+autoheader
+autoconf
+autoreconf
+ifnames
+autom4te
+
+
+automake
+------
+aclocal
+automake
+
+
+
+
+* autoscan将对整个项目进行扫描来搜索普通的可移植性问题，例如检查编译器、库、头文件、
+结构体等，最终生成configure.scan，该文件是configure.ac（早期使用configure.in）的一
+个雏形。在生成之后需要修改为configure.ac并根据项目添加自定义内容。
+
+[//]: # (该命令执行后需要修该configure.ac，并可能定义自己的宏)
+
+* aclocal会根据已经安装的宏、用户自定义的宏、acinclude.m4文件中的宏将configure.ac文件
+中所需要的宏集中定义在aclocal.m4中，该文件是一个perl脚本程序。
+
+* autoheader根据configure.ac中的一些宏，运行m4来生成一个autoconfig.h.in文件。
+
+[//]: # (在执行下面之前，需要在每一个源码目录中编写Makefile.am)
+
+* automake将根据Makefile.am中定义的接口建立一个Makefile.in
+
+* autoconf将configure.ac中的宏展开，生成一个configure脚本，
+
+
+
+
+
+
+
+
