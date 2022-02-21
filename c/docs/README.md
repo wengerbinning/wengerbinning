@@ -98,4 +98,7 @@ typedef int (*type_name)(int a, int b);
 
 * system是一个只能执行程序，不能进行交互的函数方法。
 
-systemct(const char * command);
+systemct(const char * command)
+
+
+中间件、模块库
