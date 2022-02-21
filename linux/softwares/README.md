@@ -14,3 +14,20 @@ iw, wireless-tools
 解压工具
 
 zstd, gzip, bzip2, xz
+
+
+
+软件管理工具
+===========
+
+
+**apt(apt-get, apt-cache)**
+
+
+
+**yum**
+
+
+
+**pacman(yay, paru)**
+

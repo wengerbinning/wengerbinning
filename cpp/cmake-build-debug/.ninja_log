@@ -1,4 +1,0 @@
-# ninja log v5
-0	111	1639202328259094270	build.ninja	13235eff53c99d4c
-0	476	1639202328832427469	CMakeFiles/helloworld.dir/helloworld.cpp.o	21ff287ef3470918
-477	546	1639202328899094119	../bin/helloworld	17f37b072b5a4c5f

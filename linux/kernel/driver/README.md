@@ -1,4 +1,6 @@
-主控控制器接口(HCI,Host Controller Interface)是一种描述外部设备的主控的寄存器的标准。OHCI、UHCI、EHCI、xHCI用于描述USB设备，AHCI用于描述SATA设备，WHCI,VHCI 
+主控控制器(Host Controller)是计算机端的USB控制器。主控控制器接口(HCI,Host Controller Interface)是一种描述外部设备的主控的寄存器的标准。
+OHCI、UHCI、EHCI、xHCI是不同版本的标准，AHCI用于描述SATA设备，WHCI,VHCI。计算机中的USB控制器被称为主机控制器(Host Controller),USB设备
+中的控制器（UDC），每条总线上只有一个主机控制器，负责协调主机和设备间的通信，设备端不能主动向主机发起通信。 
 
 
 通用主控控制器接口(UHCI, Universal Host Controller Interface)支持USB1。
