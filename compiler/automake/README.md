@@ -1,0 +1,4 @@
+# automake
+
+AUTOMAKE_OPTIONS
+
