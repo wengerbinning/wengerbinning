@@ -155,6 +155,9 @@ automake
 
 
 
+AM_LIBS 
+AM_LFLAGS
+
 
 
 

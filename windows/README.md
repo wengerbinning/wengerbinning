@@ -133,3 +133,7 @@ nero
 
 
 RYCR6-T7Y6M-2TVHK C2YW3-7TYQ8
+
+
+
+# Windows的数字激活

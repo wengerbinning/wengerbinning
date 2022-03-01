@@ -156,6 +156,20 @@ git tag -d <label>
 
 * `git log`显示关于仓库的日志信息。没有参数时，默认从近及远显示所有提交日志。
 
+```shell
+# 对比dev分支中存在，但master中没有的提交。
+git log dev ^master
+
+# 查看dev较于master的新的提交。
+git log dev..master
+
+# 对比两个分支的差异。
+git log dev...master
+
+# 对比两个分支的差异，并使用左右箭头来区分是哪一个分支的。
+git log --left-right dev...master
+```
+
 * `--follow`
 * `--no-decorate, --decorate[=short|full|auto|no]`
 * `--decorate-refs=<pattern>, --decorate-refs-exclude=<pattern>`
@@ -221,6 +235,9 @@ git tag -d <label>
   git push
   # 将标签一起推送。
   git push --tags
+
+  # 禁止推送。
+  git remote set-url --push origin no_push
   ```
 
 * 【功能】获取远程仓库：
@@ -271,6 +288,15 @@ git branch --unset-upstrean
   
   # 查看当前分支的最近的提交。
   git branch -v
+
+  # 查看所有本地分支的上游分支。
+  git branch -vv
+
+  # 修改当前分支名称
+  git branch -m <branch new name>
+
+  # 修改指定分支的名称。
+  git branch -m <branch old name> <branch new name> 
   ```
 
 * 【功能】切换分支：
