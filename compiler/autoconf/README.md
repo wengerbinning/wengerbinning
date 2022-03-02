@@ -2,5 +2,5 @@
 
 
 ```shell
-autoreconf --verbose --install --force
+autoreconf --install --force
 ```
