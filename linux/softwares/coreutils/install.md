@@ -50,3 +50,24 @@ install OPTION... -d DIRECTORY...
 * `-v, --verbose`，详细显示过程。
 * `--help`显示帮助。
 * `--version`显示版本信息。
+
+
+
+
+
+##
+
+安装$DESTDIR/usr/sbin/下多个可执行文件到$SYSROOT/usr/sbin/下，$SYSROOT/usr/sbin可以不存在。
+
+```shell
+install -m 554 -D -t $SYSROOT/usr/sbin $DESTDIR/usr/sbin/*
+
+# stip all file
+install -s --strip-program=strip -m 775 -D -t $SYSROOT/usr/sbin $DESTDIR/usr/sbin/*
+```
+
+创建安装目录
+
+```shell
+install -d $SYSROOT/usr/{bin,sbin,share,include,lib}
+```
