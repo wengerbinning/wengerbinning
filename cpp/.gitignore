@@ -1,8 +1,4 @@
-**.o
-**.a
-**.so
+bin
+lib
+CMakeFiles
 
-**/bin/
-
-**/.idea/
-**/.vscode/
