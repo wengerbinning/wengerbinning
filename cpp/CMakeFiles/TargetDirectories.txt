@@ -1,3 +1,0 @@
-/home/wenger/repos/wengerbinning/cpp/CMakeFiles/rebuild_cache.dir
-/home/wenger/repos/wengerbinning/cpp/CMakeFiles/edit_cache.dir
-/home/wenger/repos/wengerbinning/cpp/CMakeFiles/helloworld.dir
