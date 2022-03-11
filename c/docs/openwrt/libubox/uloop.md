@@ -72,4 +72,3 @@ struct uloop_fd {
 ## usock
 
 usock
-
