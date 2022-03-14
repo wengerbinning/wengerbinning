@@ -10,7 +10,8 @@ coreutiils
 iproute2, net-tools
 iw, wirreless-tools
 netcat
-networkmananager
+
+networkmananager或者network
 
 在使用iw或者wireless-tools时，networkmanager可能会产生影响，需要关闭NetworkManager服务。
 
