@@ -6,5 +6,5 @@ project(data-structure
     HOMEPAHE_URL "http://github.com/wengerbinning"
     LANGUAGES CXX
 )
-
+p
 add_executable(list list.cpp)

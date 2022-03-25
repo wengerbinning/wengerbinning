@@ -25,3 +25,14 @@ char[1024] buffer;
 
 end_element = end(buffer);
 ```
+
+
+
+
+**指针数组**
+
+指针数组是一个元素为指针的数组，
+
+```cpp
+char *ptr_array[0];
+```
