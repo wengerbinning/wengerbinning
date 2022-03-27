@@ -1,3 +1,1 @@
-# Some generic matching directorys that do not need be tracked.
-**/.cache
-**/.build
+.venv*

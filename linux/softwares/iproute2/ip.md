@@ -1,10 +1,24 @@
-ip
 
 
+## 链路管理
 
 
 ```shell
-ip a
+# 启动网卡。
+ip link set dev eth0 up
+
+# 关闭网卡。
+ip link set dev eth0 down
+
+
+```
+
+
+## 地址管理
+
+```shell
+# 查看网络地址
+ip address
 ```
 
 ```shell
@@ -45,4 +59,57 @@ ip a
 
 # inet6 <ipv6>/<network portion> scope global dynamic noprefixroute
 
+```
+
+## 策略管理
+
+```shell
+# 查看所有策略。(默认会存在三条默认的策略对应local、mian、default。)
+ip rule show
+```
+
+添加自定义规则
+
+```shell
+# 根据源地址添加路由表处理规则。
+ip rule add from 192.168.1.10 table 1
+
+# 根据源地址的网络地址添加路由表处理规则。
+ip rule add from 192.168.1/24 table 2
+
+# 根据目的地址添加路由表处理规则。
+ip rule add to 192.168.3.1 table 3
+
+# 根据目的地址的网络地址添加路由表处理规则。
+ip rule add to 192.168.3.0/24 table 4
+
+# 根据fwmark添加路由表处理规则。
+ip rule add fwmark 1 table 1
+```
+
+## 路由管理
+
+```shell
+# 显示路由。(默认显示主路由表)
+ip route show
+```
+
+添加默认网管。
+
+
+```shell
+ip route add default via 192.168.3.1 dev eth0
+```
+
+刷新路由表。（在设置完路由表之后需要刷新）
+
+```shell
+ip route flush cache
+```
+
+## 邻居发现
+
+```shell
+# 显示邻居表。
+ip neigh show
 ```

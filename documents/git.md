@@ -6,18 +6,18 @@ Git是一个免费开源分布式版本控制系统（DVCS，Distributed Version
 
 * 用户相关配置：主要是用户名与邮箱的配置。
 
-  ```shell
-  # 指定用户名。
-  git config user.name [<username>]
-  # 指定用户邮箱。
-  git config user.email [<email>]
-  # 查看所有配置信息。
-  git config -l
-  # 指定一个默认仓库。
-  git config --global init.defaultBranch master
-  
-  git config advice.addIgnoredFile false
-  ```
+```shell
+# 指定用户名。
+git config user.name [<username>]
+# 指定用户邮箱。
+git config user.email [<email>]
+# 查看所有配置信息。
+git config -l
+# 指定一个默认仓库。
+git config --global init.defaultBranch master
+
+git config advice.addIgnoredFile false
+```
 
    如果没有--global参数会为当前仓库设置用户信息，当然你的工作目录必须在一个仓库下才能这样使用。
 
@@ -208,7 +208,7 @@ git log --left-right dev...master
   git mv
   ```
 
-## 远程仓库
+**
 
 * 【功能】克隆远程仓库：
 
@@ -230,15 +230,12 @@ git log --left-right dev...master
 
 * 【功能】推送本地仓库：
 
-  ```shell
-  # 将本地仓库的变更推送到远程仓库。
-  git push
-  # 将标签一起推送。
-  git push --tags
-
-  # 禁止推送。
-  git remote set-url --push origin no_push
-  ```
+```shell
+# 将本地仓库的变更推送到远程仓库。
+git push
+# 将标签一起推送。
+git push --tags
+```
 
 * 【功能】获取远程仓库：
 
@@ -252,7 +249,7 @@ git log --left-right dev...master
 
   ```shell
   #　显示所有远程仓库。
-  git remote -v
+  
   git add <remote label> <url>
   ```
   
@@ -274,9 +271,44 @@ git branch --set-upstream-to=<remote branch> <lcoal branch>
 git branch --unset-upstrean
 ```
 
+**远程分支相关**
 
+```shell
+# 显示远程仓库。
 
-## 分支管理
+git remote -v
+
+# 添加远程仓库。(默认的远程仓库的标签是origin)
+
+git remote add <remote label> <url>
+# example: git remote add github github.com:wengerbinning/demo
+
+# 删除远仓库。
+
+git remote remove <remote label>
+# example: git remote remove github
+
+# 显示远程仓库的状态。(主要包括url、远程分支、本地分支以及两者之间的关系。)
+
+git remote show <remote label>
+# example: git remote show origin
+
+# 更新远程仓库。
+
+git remote update <remote label>
+# example: git remote update origin
+
+# 更新远程仓库状态。(此行为主要是在远程仓库中的远程分支已删除，但是在本地的远程分支仍存在时使用。用于将更新本地远程分支的信息。)
+
+git remote prune <remote label>
+# example: git remote prune origin
+
+# 更新远程仓库的地址。（一般远程仓库的拉取与推送都是同一个地址，但是可以通过该行为修改；通常可以达到只能拉取但不能推送的目的。）
+git remote set-url --push origin <push url>
+# example: git remote set-url --push origin unknown
+```
+
+**分支管理相关**
 
 * 【功能】新建分支：
 

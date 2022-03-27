@@ -51,3 +51,9 @@
 
 .*.o.cmd文件是内核编译生成*.o的依赖文件，其中有source_*、deps_*、cmd_*三类，其中source表示源码
 deps表示依赖有文件
+
+
+
+## 头文件
+
+linux/export.h
