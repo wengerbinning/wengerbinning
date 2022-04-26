@@ -35,12 +35,21 @@ unset <variable_name>
 
 * 对于当前用户：`~/bash_profile`、`~/.bash_login`、`~/.profile`，前两个针对SHELL为bash的配置文件，如果shell为zsh，则有`.zshrc`.
 
+* skel
 
 **特殊的环境变量**
 
 * `PATH`是shell用来搜索可执行文件的路径，通常为各个二进制文件的存放路径，多个路径通过`:`来区分。
 * `TERM`是
+  * `$-`记录但当前设置的shell选项，himBH是默认值，可以通过`set -x`来打开相应选项， `set +x`来
+  关闭相应的选项。`set -o`可以查看当前shell的选项列表。 
 
+h - hashall表示shell将命令所在路径记录下来，避免每次查询，
+i - interactive-comments表示当前shell是一个交互终端，当执行脚本时是关闭该选项的。
+m - monitor打开监控模式，通过job control控制进程。通过`Ctrl+Z`将进程移动到后台，jobs查看后台进程，`fg %1`将后台进程移动到前端。
+B - braceexpand打开大括号扩展，可以使用大括号扩展来避免冗长路径。
+H - history expand打开记录执行的命令的选项。命令记录在~/.bash_history。
+x - xtrace
 
 
 
