@@ -1,4 +1,4 @@
-
+#include <stdio.h>
 
 struct talloc_reference_handle {
 	struct talloc_reference_handle *next, *prev;
@@ -32,12 +32,12 @@ struct talloc_chunk {
 };
 
 
-#define PRINT(ptr, type) {
-    printf("")
-}
+#define INFO(ptr, type) printf(#ptr" in %p,type is "#type", size is %d\n", &ptr, sizeof(type))
 
 
 int main(int argc, const char **argv) {
+    struct talloc_chunk var;
+    INFO(var,struct talloc_chunk);
 
     return 0;
 }
