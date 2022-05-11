@@ -14,3 +14,18 @@ struct file_operations {
     ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);
 }
 ```
+
+
+
+
+文件访问权限
+==========
+
+在一个进程中，与用户有关的id有ruid（实际用户ID）、euid（有效用户ID）与suid（设置用户ID），与用
+户组有关的id有rgid（实际组ID）、egid（有效组ID）、sgid（设置组ID）。
+
+ruid与rgid是标识用户身份，在登录时取自口令文件的登录项，通常在登陆期间不会改变，超级用户进程可以修改。
+
+有效uid、有效gid以及附属gid决定了我们的权限访问
+
+设置uid以及设置gid在执行程序时保存了有效uid与有效gid的备份
