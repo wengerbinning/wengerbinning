@@ -65,4 +65,10 @@ extern int execve (const char *__path, char *const __argv[], char *const __envp[
 
 
 
+```c
+int pipe (int __pipedes[2]);
+```
+
+pipe用于创建一个无名管道，用于与子进程通信。该管道是默认阻塞，
+
 
