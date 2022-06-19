@@ -123,6 +123,10 @@ logger：event.o message.o log.o
 ```
 
 
+## 函数
+
+wildcard
+
 ## LINKS
 
 [GNU make](https://www.gnu.org/software/make/manual) 是GNU项目中一个子项目.

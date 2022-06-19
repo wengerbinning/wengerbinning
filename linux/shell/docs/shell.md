@@ -208,7 +208,8 @@ awk -F ',' <command> <file>
 # usage: cut <option>... [<file>...] 
 
 # option:
-#     -b, --bytes=<byte list>:
+#     -b, --bytes
+#     =<byte list>:
 #     -c, --characters=<charscter list>:
 #     -d, --delimiter=<delimiter>:
 #     -f, --fields=<field list>:

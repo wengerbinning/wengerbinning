@@ -117,10 +117,13 @@ make CC=gcc CFLAGS="-I/usr/include -I/include"
 
 ```Makefile
 # 根据event.o、message.o 、log.o来构建logger文件。
-logger：event.o message.o log.o
-    gcc -o logger event.o message.o log.o
-    echo "logger has built."
+<targets>...:<target-pattern>:<prereq-pattern>...
+	<command>
 ```
+
+当target-pattern为%.o表示所有*.o的target；当prereq-pattern出现%.c时，表示对应的*.c文件。
+
+
 
 
 ## LINKS

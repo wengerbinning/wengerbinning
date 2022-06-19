@@ -152,7 +152,9 @@ automake
 
 * autoconf将configure.ac中的宏展开，生成一个configure脚本，
 
-
+```shell
+autoreconf --install --force
+```
 
 
 AM_LIBS 

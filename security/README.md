@@ -1,3 +1,5 @@
+
+
 X.509是密码学中公钥证书的标准格式，该标准有两种编码格式(PEM, Privacy Enhanced Mail)与(DER, Distinguished Encoding Rules)两种
 这两种格式都可以存储私钥、公钥以及证书。
 
@@ -86,3 +88,6 @@ openssl req -new -key ca.key -out ca.csr
 ```log
 
 ```
+
+
+
