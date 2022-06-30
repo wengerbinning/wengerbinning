@@ -21,21 +21,19 @@ ip link set dev eth0 down
 ip address
 ```
 
-```shell
+```log
+wenger@WINDOWS:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
+    inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-#
-2: enp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 1c:69:7a:2e:f7:77 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.122.251/24 brd 192.168.122.255 scope global noprefixroute enp3s0
+6: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:71:da:e6 brd ff:ff:ff:ff:ff:ff
+    inet 172.24.104.212/20 brd 172.24.111.255 scope global eth0
        valid_lft forever preferred_lft forever
-    inet6 2408:8640:8ff:f:122::8f2/128 scope global dynamic noprefixroute 
-       valid_lft 3712sec preferred_lft 1462sec
-    inet6 fe80::4dcd:fa72:8062:f859/64 scope link noprefixroute 
+    inet6 fe80::215:5dff:fe71:dae6/64 scope link
        valid_lft forever preferred_lft forever
 
 # mtu 1500
@@ -60,6 +58,7 @@ ip address
 # inet6 <ipv6>/<network portion> scope global dynamic noprefixroute
 
 ```
+
 
 ## 策略管理
 
