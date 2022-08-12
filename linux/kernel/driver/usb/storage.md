@@ -1,1 +1,0 @@
-UAS(USB Attached SCSI）
