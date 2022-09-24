@@ -4,10 +4,70 @@
 
 Windows是Microsoft开发的一款桌面级操作系统。
 
-## 资源链接
 
-* [Windows 官方网站](https://www.microsoft.com/zh-cn/windows/) > <https://www.microsoft.com/zh-cn/windows/>
-* [Windows 下载官方资源](https://www.microsoft.com/zh-cn/software-download) > <https://www.microsoft.com/zh-cn/software-download>
+
+**Windows API**
+
+Windows API是针对Windows操作系统家族的用户模式提供的系统编程接口。Win32 API是指32位版本的
+Windows操作系统的编程接口，以区分16位版本的Windows操作系统的编程接口，在这里Windows API是指
+兼容32位与64位的Windows API。该API在Windows SDK文档中有详细描述。具体包含基本服务、组件服务、
+用户界面服务、图形和多媒体服务、消息和协作、网络、Web服务。
+
+**Microsft.NET**
+
+Microsoft.NET框架是由框架类库(FCL, Framework Class Library)与公共语言运行库
+(CLR, Common Language Runtime)组成，CLR提供以下特性：即时编译、类型检验、垃圾回收、代码安全
+
+**Windows服务**
+
+Windows服务是指由Windows服务控制管理启动的进程。
+
+
+**DLL**
+
+DLL(动态链接库)是指语一组可调用的子例程，被链接到同一个文件中。不可执行的.NET程序集也被编译成
+DLL，但是，没有导出成任何子例程， 而是由CLR解析出编译的单元，以便访问对应的数据类型和成员。
+
+**进程**
+
+进程（Process）是一个资源容器，包含虚拟地址空间、已打开的句柄列表、安全环境、进程ID、至少一个执行线程。
+
+**线程**
+
+线程（Thread）是Windows调度的实体，线程包含一组寄存器、两个栈、线程局部存储(TLS)、线程ID
+
+**纤程**
+
+纤程(Fiber)是应用程序可以调度他自己的执行单位，也被称作轻量线程；
+
+
+**UMS**
+
+用户模式调度(UMS, User Mode Scheduling)的线程仅在64位上可用
+
+**句柄表**
+
+
+**访问令牌**
+
+访问令牌(Access token)是保存进程的安全环境的对象。
+
+**VAD**
+
+虚拟地址描述符(VAD, Virtual Address Descriptor)
+
+**Job**
+
+作业(job)是将一组进程当作一个整体来管理。
+
+
+
+
+
+
+
+
+
 
 ## 基础知识
 
@@ -137,3 +197,12 @@ RYCR6-T7Y6M-2TVHK C2YW3-7TYQ8
 
 
 # Windows的数字激活
+
+
+## LINKS
+
+* [Windows 官方网站](https://www.microsoft.com/zh-cn/windows/) 
+  > <https://www.microsoft.com/zh-cn/windows/>
+
+* [Windows 下载官方资源](https://www.microsoft.com/zh-cn/software-download) 
+   > <https://www.microsoft.com/zh-cn/software-download>

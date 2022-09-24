@@ -1,5 +1,0 @@
-# automake
-
-AUTOMAKE_OPTIONS
-
-

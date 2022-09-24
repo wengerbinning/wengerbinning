@@ -1,6 +1,0 @@
-/*
- * file: linux/usb.h
- *
- */
-
-
