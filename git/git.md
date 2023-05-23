@@ -9,19 +9,16 @@ Software Freedom Conservancy。
 
 在使用git管理之前，需要配置用户信息。git提供`git config`来配置信息。
 
-* 用户相关配置：主要是用户名与邮箱的配置。
+* 用户基础配置：主要是用户名与邮箱的配置。
 
 ```shell
 # 指定用户名。
 git config user.name [<username>]
 # 指定用户邮箱。
 git config user.email [<email>]
-# 查看所有配置信息。
-git config -l
-# 指定一个默认仓库。
-git config --global init.defaultBranch master
 
-git config advice.addIgnoredFile false
+# 查看仓库下所有配置信息。
+git config --list
 ```
 
    如果没有--global参数会为当前仓库设置用户信息，当然你的工作目录必须在一个仓库下才能这样使用。
@@ -29,11 +26,20 @@ git config advice.addIgnoredFile false
 * 基础功能配置：主要是一些基础的配置。
 
 ```shell
+# 指定一个默认仓库。
+git config --global init.defaultBranch master
+
 # 支持中文显示。
 git config --global core.quotepath off
 
 #配置git的编辑器为vim。
 git config --global core.editor vim
+
+# 配置全局不跟踪的文件。
+git config --global core.excludesFile ~/.gitignore
+
+# 配置添加已忽略的文件时的策略。
+git config advice.addIgnoredFile false
 ```
 
 可以使用`git help config`来查看git config的详细使用方法。这些配置信息都是保存在配置文件中的。相关的配置文件有：
