@@ -1,0 +1,15 @@
+{
+    /* window */
+    
+    "window.title": "${rootName}",
+
+    /* workbench */
+    
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#ff0000"
+    },
+
+    /* editor */
+    
+    "editor.rulers": [80, 120]
+}
