@@ -1,0 +1,47 @@
+# basic
+base-files
+binutils
+bash
+bash-completion
+
+# package manager
+apt
+dpkg
+
+# input
+fcitx
+
+# tools
+dc
+eject
+gzip
+zip
+
+
+# remote
+dropbear
+
+
+# develop
+autoconf
+automake
+bison
+cmake
+
+gcc
+
+g++
+
+# project
+git
+
+
+# GNOME
+
+
+## NETWORK
+iperf
+iperf3
+iputils
+iproute
+net-tools
