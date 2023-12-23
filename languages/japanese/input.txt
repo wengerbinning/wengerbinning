@@ -1,0 +1,13 @@
+Hiragana			平假名
+FullーWidth　Katakana		全片假名
+Full-Width Alphanumeric		全字母数字
+Half-Width Katakana		半片假名
+Half-width Alphanumeric		半字母数字
+
+
+
+
+
+ちひろさん
+
+Call Me Chihiro
