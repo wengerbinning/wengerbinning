@@ -29,4 +29,4 @@ enc
 
 
 
-openssl enc -d -des3 -slat -k @wengerbinning -in wenger.tar.gz | tar xzvf
+openssl enc -d -des3 -slat -k <password> -in wenger.tar.gz | tar xzvf
