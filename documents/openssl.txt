@@ -4,4 +4,5 @@ openssl enc -d -des3 -salt -k <password> -in wenger.tar.gz | tar xzvf -
 
 
 
-
+#  基于私钥生成公钥
+openssl rsa -in grandstream-id_rsa -pubout -out grandstream-id_rsa.pub
