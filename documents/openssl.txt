@@ -1,8 +1,8 @@
-tar czvf - wenger |openssl enc -e -des3 -salt -k <password> -out wenger.tar.gz
-openssl enc -d -des3 -salt -k <password> -in wenger.tar.gz | tar xzvf -
+tar czvf - username |openssl enc -e -des3 -salt -k <password> -out username.tar.gz
+openssl enc -d -des3 -salt -k <password> -in username.tar.gz | tar xzvf -
 
 
 
 
 #  基于私钥生成公钥
-openssl rsa -in grandstream-id_rsa -pubout -out grandstream-id_rsa.pub
+openssl rsa -in id_rsa -pubout -out id_rsa.pub
