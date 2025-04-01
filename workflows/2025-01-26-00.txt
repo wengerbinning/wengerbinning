@@ -1,0 +1,16 @@
+
+
+
+find -maxdepth -newer[aBcmt]{2} -atime -ctime -mtime
+
+<https://blog.csdn.net/pjx0207/article/details/81698795>
+
+
+
+
+
+
+dedewd
+----------------
+
+
