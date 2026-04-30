@@ -1,0 +1,27 @@
+
+
+
+SHOW DATABASES;
+
+
+* sys - sys_schema: 一个集合了视图 (View)、函数 (Function) 和存储过程 (Stored Procedure) 的工具库
+* mysql -
+* information_schema -
+* performance_schema -
+
+
+* mysql.user
+* mysql.db
+* mysql.tables_priv
+* mysql.columns_priv
+* mysql.procs_priv
+* mysql.proxies_priv
+
+
+
+
+# 创建数据库
+CREATE
+
+
+CREATE DATABASE wenger

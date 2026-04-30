@@ -1,0 +1,102 @@
+> SELECT * FROM mysql.user ORDER BY User, Host;
++-----------+-------------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+---------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+---------+--------------+--------------------+
+| Host      | User        | Password                                  | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Show_db_priv | Super_priv | Create_tmp_table_priv | Lock_tables_priv | Execute_priv | Repl_slave_priv | Repl_client_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Create_user_priv | Event_priv | Trigger_priv | Create_tablespace_priv | Delete_history_priv | ssl_type | ssl_cipher | x509_issuer | x509_subject | max_questions | max_updates | max_connections | max_user_connections | plugin                | authentication_string                     | password_expired | is_role | default_role | max_statement_time |
++-----------+-------------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+---------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+---------+--------------+--------------------+
+|           | PUBLIC      |                                           | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      | N                   |          |            |             |              |             0 |           0 |               0 |                    0 |                       |                                           | N                | Y       |              |           0.000000 |
+| localhost | mariadb.sys |                                           | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      | N                   |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password |                                           | Y                | N       |              |           0.000000 |
+| localhost | mysql       | invalid                                   | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      | Y                   |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | invalid                                   | N                | N       |              |           0.000000 |
+| localhost | redmine     | *275589819C2DE801B002DFED28FBC0736109C358 | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      | N                   |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *275589819C2DE801B002DFED28FBC0736109C358 | N                | N       |              |           0.000000 |
+| localhost | root        | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      | Y                   |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | N                | N       |              |           0.000000 |
+| localhost | wenger      | *7AA91CD16E6029F44B84E814EAF3C85274800140 | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      | N                   |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *7AA91CD16E6029F44B84E814EAF3C85274800140 | N                | N       |              |           0.000000 |
++-----------+-------------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+---------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+---------+--------------+--------------------+
+
+> SHOW GRAMS;
+
+
+
+
+* 最小权限原则 (Principle of Least Privilege)
+* 账户识别：每个数据库账户由 '用户名'@'主机名' 联合确定
+* 主机限定: 精细化控制登录来源
+
+
+
+* 全局权限 (Global Privileges)
+* 数据库权限 (Database Privileges)
+* 数据表权限 (Table Privileges)
+* 数据列权限 (Column Privileges)
+
+
+
+# 创建用户
+CREATE USER 'app_user'@'localhost' IDENTIFIED BY 'StrongP@ssw0rd!';
+CREATE USER 'app_user'@'192.168.1.%' IDENTIFIED BY 'StrongP@ssw0rd!';
+
+# 用户审查
+SELECT User, Host FROM mysql.user;
+
+
+
+
+
+
+# 权限
+
+
+
+权限
+ALL PRIVILEGES - 特定范围内所有权限
+USAGE - 没有任何权限
+GRANT OPTION - 授权权限
+
+范围
+ON *.*
+ON <DB NAME>.*
+
+
+
+
+
+
+# 授予权限
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON wenger.* TO 'wenger'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE ON my_app_db.orders TO 'app_user'@'localhost';
+GRANT CREATE USER, RELOAD, SUPER ON *.* TO 'db_admin'@'localhost';
+
+# 撤销权限
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'app_user'@'localhost';
+
+# 权限审查
+SHOW GRANTS FOR 'app_user'@'localhost';
+
+
+
+
+#
+SHOW GRANTS;
+SHOW GRANTS FOR 'wenger'@'localhost';
+
+
+
+
+
+
+mariadbd-safe --skip-grant-tables
+
+
+
+FLUSH PRIVILEGES;
+
+
+
+# 用户权限
+SHOW GRANTS;
+SHOW GRANTS FOR CURRENT_USER();
+SHOW GRANTS FOR 'root'@'localhost';
+
+SELECT * FROM information_schema.USER_PRIVILEGES;
+
+
+# 数据库权限
