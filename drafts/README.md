@@ -84,3 +84,92 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'root' WITH GRAN
 * 数据库：创建、删除、修改、查找、更新、备份、导入、搜索
 * 数据表：创建、删除、修改、查找、更新、导出、导入、搜索
 * 数据项：创建、删除、修改、查找、更新、导出、导入、搜索
+
+
+
+* 最小权限原则 (Principle of Least Privilege)
+* 账户识别：每个数据库账户由 '用户名'@'主机名' 联合确定
+* 主机限定: 精细化控制登录来源
+
+
+
+* sys - sys_schema: 一个集合了视图 (View)、函数 (Function) 和存储过程 (Stored Procedure) 的工具库
+* mysql -
+* information_schema -
+* performance_schema -
+
+* mysql.user
+* mysql.db
+* mysql.tables_priv
+* mysql.columns_priv
+* mysql.procs_priv
+* mysql.proxies_priv
+
+* 全局权限 (Global Privileges)
+* 数据库权限 (Database Privileges)
+* 数据表权限 (Table Privileges)
+* 数据列权限 (Column Privileges)
+
+
+
+* 服务维护
+
+
+```
+# 安全模式
+mariadbd-safe --skip-grant-tables
+# 加载权限模块
+FLUSH PRIVILEGES;
+SELECT * FROM mysql.user ORDER BY User, Host;
+```
+
+
+* 用户管理
+
+```
+# 创建用户
+CREATE USER 'app_user'@'localhost' IDENTIFIED BY 'StrongP@ssw0rd!';
+CREATE USER 'app_user'@'192.168.1.%' IDENTIFIED BY 'StrongP@ssw0rd!';
+```
+
+* 权限管理
+
+```
+# 权限审查
+SHOW GRANTS;
+SHOW GRANTS FOR CURRENT_USER();
+SHOW GRANTS FOR 'wenger'@'localhost';
+# 撤销权限
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'app_user'@'localhost';
+# 授予权限
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON wenger.* TO 'wenger'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE ON my_app_db.orders TO 'app_user'@'localhost';
+GRANT CREATE USER, RELOAD, SUPER ON *.* TO 'db_admin'@'localhost';
+```
+
+* 数据库管理
+
+```
+SHOW DATABASES;
+CREATE DATABASE wenger;
+```
+
+* 数据表管理
+
+```
+SHOW COLUMNS FROM users;
+CREATE TABLE users (
+    uuid     TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(64),
+    type     TINYINT UNSIGNED,
+    PRIMARY KEY(uuid)
+);
+```
+
+* 数据项管理
+
+```
+INSERT INTO users (name, type) VALUES ('test', 0);
+SELECT * FROM mysql.user;
+```
