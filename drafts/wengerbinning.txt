@@ -42,6 +42,64 @@
 
 
 
+
 name
 
 label[]
+
+
+
+
+
+* 生成索引
+* 注册模块
+* 注销模块
+
+
+属性 - 模块数量、模块列表
+操作 - 生成索引、注册模块、注销模块、模块搜索
+
+
+created/destory
+register/unregister
+
+modules
+
+* 属性 - 数量、注册列表、创建列表
+* 方法 - 创建、销毁、注册、注销
+
+* 属性 - 索引、名称、引用、依赖
+* 方法 - 注册、注销
+
+
+
+
+struct module_context;
+typedef struct module_context module_context_t;
+
+struct module {
+	struct list_head clist; // create list
+	struct list_head rlist; // register list
+
+	int id;
+	char *uuid;
+	char *name;
+
+	module_context_t *ctx;
+};
+
+struct module_context {
+	struct list_head list;
+
+	int count;
+
+	struct list_head register_list;
+	struct list_head  created_list;
+}
+
+
+int module_created()
+int module_destory()
+int module_register()
+int module_unregister()
+
