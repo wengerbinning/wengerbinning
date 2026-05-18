@@ -1,0 +1,15 @@
+源码管理
+
+
+
+项目 > 模块 > 文件 > 模型 > 符号
+
+
+
+
+
+* proj - 项目(project)
+* mods - 模块(module)
+* file - 文件(file)
+* mdel - 模型(model)
+* symb - 符号(symbol)
