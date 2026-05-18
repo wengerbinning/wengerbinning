@@ -1,0 +1,51 @@
+文档/手册管理
+
+
+
+
+
+
+
+
+* 标题 - title
+* 说明 - description
+* 类型 -
+* 路径 -
+* 目录 -
+
+
+
+* 需求文档
+* 交互文档
+* 技术文档
+* 用户手册
+* 方案文档
+
+
+
+文件系统指标
+----------
+
+* 文件数量 - 10240
+* 文件大小 -    1G
+* 名称长度 -   256
+* 递归层级 -   256
+
+
+文件系统
+
+* NTFS
+* FAT32
+*
+
+
+* lname - Lable Name
+* pname - Path Name
+
+.attrs/${pname}.attr
+${pname}.${suffix}
+${pname}.d/
+
+
+
+label_name - path_name

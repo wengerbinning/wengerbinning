@@ -1,0 +1,32 @@
+
+
+* repo - 仓库
+* file - 文件
+
+* webs - 网站
+* mems - 成员
+* orgs - 组织
+
+
+code - 源码
+
+* name - 名称
+* desc - 描述
+* stat - 状态
+* vers - 版本
+
+file - 文件
+
+* name - 名称
+* desc - 描述
+* size - 大小
+* line - 行数
+* stat - 状态
+* type - 类型
+
+symb - 符号
+
+* name - 名称
+* desc - 描述
+* type - 类型
+* attr - 属性
